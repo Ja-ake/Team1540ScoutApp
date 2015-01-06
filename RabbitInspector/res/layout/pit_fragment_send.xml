@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/pit_send_previous_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" >
+
+        <Button
+            android:id="@+id/pit_send_previous_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/previous_prompt" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/pit_buttons_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/pit_send_previous_layout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" >
+
+        <TextView
+            android:id="@+id/pit_send_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/send_prompt"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/pit_send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pit_send_prompt"
+            android:layout_centerInParent="true"
+            android:text="@string/send_button_prompt" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

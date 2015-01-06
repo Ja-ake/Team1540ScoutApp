@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="edu.team1540.rabbit.basket.pit.PitHomeFragment"
+    tools:ignore="NestedWeights" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:baselineAligned="false" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/pit_team_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="bottom"
+                android:text="@string/team_prompt"
+                android:textSize="25sp" />
+
+            <Spinner
+                android:id="@+id/pit_team_measure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pit_team_prompt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/pit_chillness_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="bottom"
+                android:text="@string/coolness_prompt"
+                android:textSize="25sp" />
+
+            <SeekBar
+                android:id="@+id/pit_chillness_mesure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pit_chillness_prompt"
+                android:max="10" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/pit_widget_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="bottom"
+                android:text="@string/widget_prompt"
+                android:textSize="25sp" />
+
+            <SeekBar
+                android:id="@+id/pit_widget_mesure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pit_widget_prompt"
+                android:max="10" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:baselineAligned="false" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/pit_wheeltype_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="bottom"
+                android:text="@string/wheel_prompt"
+                android:textSize="25sp" />
+
+            <Spinner
+                android:id="@+id/pit_wheeltype_measure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pit_wheeltype_prompt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/pit_wheelnum_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="bottom"
+                android:text="@string/wheelnum_prompt"
+                android:textSize="25sp" />
+
+            <FrameLayout
+                android:id="@+id/pit_wheelnum_measure_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pit_wheelnum_prompt" >
+
+            </FrameLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/pit_home_next_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:text="@string/next_prompt" />
+    </LinearLayout>
+</LinearLayout>
