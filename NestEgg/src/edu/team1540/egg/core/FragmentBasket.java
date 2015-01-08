@@ -4,28 +4,28 @@ import android.app.Activity;
 import android.app.Fragment;
 import edu.team1540.egg.impl.drawer.NavigationDrawerWrapper.NamedSelection;
 
-public class FragmentBasket implements NamedSelection<FragmentBasket>{
+public class FragmentBasket implements NamedSelection<FragmentBasket> {
 	public final String name;
 	private final Fragment[] fragments;
 	private final BasketDrawCallbacks callbacks;
-	private int selection=0;
+	private int selection = 0;
 
-	public <T extends Activity & BasketDrawCallbacks> FragmentBasket(BasketDrawCallbacks callbacks,String name,Fragment... fragments){
-		this.name=name;
-		this.fragments=fragments;
-		this.callbacks=callbacks;
+	public <T extends Activity & BasketDrawCallbacks> FragmentBasket(BasketDrawCallbacks callbacks, String name, Fragment... fragments) {
+		this.name = name;
+		this.fragments = fragments;
+		this.callbacks = callbacks;
 	}
 
-	public Fragment getFragment(){
+	public Fragment getFragment() {
 		return fragments[selection];
 	}
 
-	public void nextFragment(){
+	public void nextFragment() {
 		selection++;
 		callbacks.basketNeedsRedrawn(this);
 	}
 
-	public void previousFragment(){
+	public void previousFragment() {
 		selection--;
 		callbacks.basketNeedsRedrawn(this);
 	}
@@ -40,7 +40,7 @@ public class FragmentBasket implements NamedSelection<FragmentBasket>{
 		return this;
 	}
 
-	public interface BasketDrawCallbacks{
+	public interface BasketDrawCallbacks {
 		public void basketNeedsRedrawn(FragmentBasket b);
 	}
 }

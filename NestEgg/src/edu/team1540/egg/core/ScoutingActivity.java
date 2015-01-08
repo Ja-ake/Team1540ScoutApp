@@ -12,35 +12,33 @@ import edu.team1540.egg.core.FragmentBasket.BasketDrawCallbacks;
 import edu.team1540.egg.impl.drawer.NavigationDrawerWrapper;
 import edu.team1540.egg.impl.drawer.NavigationDrawerWrapper.DrawerCallback;
 
-public abstract class ScoutingActivity extends Activity implements DrawerCallback<FragmentBasket>,BasketDrawCallbacks{
+public abstract class ScoutingActivity extends Activity implements DrawerCallback<FragmentBasket>, BasketDrawCallbacks {
 
 	/**
 	 * A fragment for defining the navigation drawer
 	 */
 	private NavigationDrawerWrapper<FragmentBasket> navigationDrawerWrapper;
-	private FragmentBasket currentBasket=null;
+	private FragmentBasket currentBasket = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scouting);
-		Log.i("NEST_EGG","creating scouting activity...");
+		Log.i("NEST_EGG", "creating scouting activity...");
 		navigationDrawerWrapper = new NavigationDrawerWrapper<FragmentBasket>(this, getPages());
 		navigationDrawerWrapper.setUp(this);
-		navigationDrawerWrapper.callback=this;
+		navigationDrawerWrapper.callback = this;
 		navigationDrawerWrapper.onNavigationDrawerItemSelected(0);
 	}
 
 	@Override
 	public void itemSelected(FragmentBasket item) {
 		// update the main content by replacing fragments
-		currentBasket=item;
+		currentBasket = item;
 		Log.i("NEST_EGG", item.toString());
 		FragmentManager fragmentManager = getFragmentManager();
-		Fragment target=item.getFragment();
-		if(target==null){
-			throw new NullPointerException();
-		}
+		Fragment target = item.getFragment();
+		if (target == null) { throw new NullPointerException(); }
 		fragmentManager.beginTransaction().replace(R.id.container, target).commit();
 	}
 
@@ -60,20 +58,18 @@ public abstract class ScoutingActivity extends Activity implements DrawerCallbac
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	public void basketNeedsRedrawn(FragmentBasket source){
+	public void basketNeedsRedrawn(FragmentBasket source) {
 		FragmentManager fragmentManager = getFragmentManager();
-		Fragment target=source.getFragment();
-		if(target==null){
-			throw new NullPointerException();
-		}
+		Fragment target = source.getFragment();
+		if (target == null) { throw new NullPointerException(); }
 		fragmentManager.beginTransaction().replace(R.id.container, target).commit();
 	}
 
-	public void incrementCurrentBasket(){
+	public void incrementCurrentBasket() {
 		currentBasket.nextFragment();
 	}
 
-	public void decrementCurrentBasket(){
+	public void decrementCurrentBasket() {
 		currentBasket.previousFragment();
 	}
 

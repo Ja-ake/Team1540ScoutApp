@@ -15,7 +15,7 @@ public class ConnectedThread extends Thread {
 	public final BluetoothSocket socket;
 	private final BufferedWriter bufWriter;
 	private final BufferedReader bufReader;
-	private boolean stopped=false;
+	private boolean stopped = false;
 	public final Queue<String> values = new ConcurrentLinkedQueue<String>();
 
 	public ConnectedThread(final BluetoothSocket socket) {
@@ -39,7 +39,7 @@ public class ConnectedThread extends Thread {
 				in = bufReader.readLine();
 				values.add(in);
 			} catch (final IOException e) {
-				stopped=true;
+				stopped = true;
 				break;
 			}
 		}
@@ -49,7 +49,7 @@ public class ConnectedThread extends Thread {
 	public void write(final String toWrite) throws IOException {
 		if (socket.isConnected()) {
 			Log.i("NEST_EGG", "Writing:" + toWrite);
-			bufWriter.write(toWrite+"\n");
+			bufWriter.write(toWrite + "\n");
 			bufWriter.flush();
 			Log.i("NEST_EGG", "Writen:" + toWrite);
 		} else {
@@ -62,11 +62,11 @@ public class ConnectedThread extends Thread {
 		try {
 			socket.close();
 		} catch (final IOException e) {
-			stopped=true;
+			stopped = true;
 		}
 	}
 
-	public boolean isDone(){
+	public boolean isDone() {
 		return stopped;
 	}
 }

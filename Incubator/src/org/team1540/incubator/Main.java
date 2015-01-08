@@ -44,34 +44,30 @@ public class Main {
 
 		Class.forName("org.sqlite.JDBC");
 		try {
-			events=new Database("eventsDatabase");
-			pits=events.createTableIfNotExist(year2014PitTableScheme);
-			stands=events.createTableIfNotExist(year2014StandTableScheme);
+			events = new Database("eventsDatabase");
+			pits = events.createTableIfNotExist(year2014PitTableScheme);
+			stands = events.createTableIfNotExist(year2014StandTableScheme);
 		} catch (SQLException e1) {
 			throw new RuntimeException(e1);
 		}
-		//Prepare listeners
-		MappingTableProccessor year2014pitInterp=new MappingTableProccessor(year2014PitTableScheme, pits, true);
-		MappingTableProccessor year2014standInterp=new MappingTableProccessor(year2014StandTableScheme,stands,true);
-		TypeProcessor logInterp=new TypeProcessor("<log>") {
+		// Prepare listeners
+		MappingTableProccessor year2014pitInterp = new MappingTableProccessor(year2014PitTableScheme, pits, true);
+		MappingTableProccessor year2014standInterp = new MappingTableProccessor(year2014StandTableScheme, stands, true);
+		TypeProcessor logInterp = new TypeProcessor("<log>") {
 			@Override
 			protected void proccessInformation(Information i) throws NotProcessableException {
-				System.out.println("Logging message:"+Arrays.toString(i.informationContent));
+				System.out.println("Logging message:" + Arrays.toString(i.informationContent));
 			}
 		};
-		//Setup server and Information Processor with listeners
-		final BluetoothServer blueTooth=new BluetoothServer("513A4666E63443E0A2FADC74058D74A2","Competative Analysis");
-		final InformationProcessor info=new InformationProcessor(new TypeProcessor[]{
-				year2014pitInterp,
-				year2014standInterp,
-				logInterp
-		});
-		info.autoProcess=true;
-		//Setup connection generator
+		// Setup server and Information Processor with listeners
+		final BluetoothServer blueTooth = new BluetoothServer("513A4666E63443E0A2FADC74058D74A2", "Competative Analysis");
+		final InformationProcessor info = new InformationProcessor(new TypeProcessor[] { year2014pitInterp, year2014standInterp, logInterp });
+		info.autoProcess = true;
+		// Setup connection generator
 		blueTooth.connectionListeners.add(info);
-		//Start server when setup is done
+		// Start server when setup is done
 		blueTooth.start();
-		ConsoleManager consoleManager=new ConsoleManager(System.in);
+		ConsoleManager consoleManager = new ConsoleManager(System.in);
 		consoleManager.addCommand(new CommandListener("INFO") {
 			@Override
 			public void runCommand(String[] args) {
@@ -87,38 +83,38 @@ public class Main {
 			@Override
 			public void runCommand(String[] args) {
 				try {
-					File pitIntFile=new File("./output/pits.csv");
+					File pitIntFile = new File("./output/pits.csv");
 					pitIntFile.delete();
-					BufferedWriter pitFile=new BufferedWriter(new FileWriter(pitIntFile));
+					BufferedWriter pitFile = new BufferedWriter(new FileWriter(pitIntFile));
 					pitFile.append(pits.encode(year2014PitTableScheme));
 					pitFile.close();
 
-					File standIntFile=new File("./output/stands.csv");
+					File standIntFile = new File("./output/stands.csv");
 					standIntFile.delete();
-					BufferedWriter standFile=new BufferedWriter(new FileWriter(standIntFile));
+					BufferedWriter standFile = new BufferedWriter(new FileWriter(standIntFile));
 					standFile.append(pits.encode(year2014StandTableScheme));
 					standFile.close();
-				}catch(SQLException e){
+				} catch (SQLException e) {
 					throw new RuntimeException(e);
-				}catch(IOException e){
+				} catch (IOException e) {
 					throw new RuntimeException(e);
 				}
 			}
 		});
-		consoleManager.addCommand(new CommandListener("TABLES"){
+		consoleManager.addCommand(new CommandListener("TABLES") {
 			@Override
-			public void runCommand(String[] args)  {
+			public void runCommand(String[] args) {
 				System.out.println("Testing...");
-				try{
-					pits.onAllRows(new ResultSetExecuteor(){
+				try {
+					pits.onAllRows(new ResultSetExecuteor() {
 						@Override
 						public void execute(ResultSet r) throws SQLException {
-							while(r.next()){
+							while (r.next()) {
 								System.out.println(r.getString(1));
 							}
 						}
 					});
-				}catch(SQLException e){
+				} catch (SQLException e) {
 					e.printStackTrace();
 				};
 			}

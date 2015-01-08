@@ -16,26 +16,25 @@ import javax.microedition.io.StreamConnectionNotifier;
 public class BluetoothServer {
 	public final Thread collector;
 	public final List<ConnectedThread> connected = new ArrayList<ConnectedThread>();
-	public final Queue<NewConnectionListener> connectionListeners=new ConcurrentLinkedQueue<NewConnectionListener>();
+	public final Queue<NewConnectionListener> connectionListeners = new ConcurrentLinkedQueue<NewConnectionListener>();
 
 	public BluetoothServer(String uuid, String serviceName) {
 		try {
-			String connURL = "btspp://localhost:" + uuid.toString()
-					+ ";name=" + serviceName;
+			String connURL = "btspp://localhost:" + uuid.toString() + ";name=" + serviceName;
 			final StreamConnectionNotifier scn = (StreamConnectionNotifier) Connector.open(connURL);
 			collector = new Thread(new Runnable() {
 				@Override
 				public void run() {
-					while(true){
+					while (true) {
 						StreamConnection conn;
 						try {
 							LocalDevice.getLocalDevice().setDiscoverable(DiscoveryAgent.GIAC);
 							conn = scn.acceptAndOpen();
 							RemoteDevice rd = RemoteDevice.getRemoteDevice(conn);
 							rd.authenticate();
-							System.out.println("New device connected:"+rd.getFriendlyName(false));
-							ConnectedThread connection=new ConnectedThread(conn);
-							for(NewConnectionListener l:connectionListeners){
+							System.out.println("New device connected:" + rd.getFriendlyName(false));
+							ConnectedThread connection = new ConnectedThread(conn);
+							for (NewConnectionListener l : connectionListeners) {
 								l.newConnection(connection);
 							}
 							connected.add(connection);
@@ -50,7 +49,8 @@ public class BluetoothServer {
 			throw new RuntimeException(e);
 		}
 	}
-	public void start(){
+
+	public void start() {
 		collector.start();
 	}
 

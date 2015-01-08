@@ -16,20 +16,20 @@ import java.util.Set;
 import android.app.Activity;
 import android.content.Context;
 
-public class CacheManager<T extends Serializable>{
+public class CacheManager<T extends Serializable> {
 
 	private final File location;
 	private Set<T> cacheItems;
 	private Set<T> frozenItems;
 
 	@SuppressWarnings("unchecked")
-	public CacheManager(Activity a,String cacheName){
-		location=new File(a.getDir("cacheManager", Context.MODE_PRIVATE),cacheName);
-		try{
-			File setFile=new File(location,"set");
+	public CacheManager(Activity a, String cacheName) {
+		location = new File(a.getDir("cacheManager", Context.MODE_PRIVATE), cacheName);
+		try {
+			File setFile = new File(location, "set");
 
 			try {
-				cacheItems=(HashSet<T>) new ObjectInputStream(new FileInputStream(setFile)).readObject();
+				cacheItems = (HashSet<T>) new ObjectInputStream(new FileInputStream(setFile)).readObject();
 			} catch (OptionalDataException e) {
 				throw new IOException(e);
 			} catch (StreamCorruptedException e) {
@@ -37,13 +37,13 @@ public class CacheManager<T extends Serializable>{
 			} catch (ClassNotFoundException e) {
 				throw new IOException(e);
 			}
-		}catch(IOException e){
-			cacheItems=new HashSet<T>();
+		} catch (IOException e) {
+			cacheItems = new HashSet<T>();
 		}
-		try{
-			File frozenFile=new File(location,"frozen");
+		try {
+			File frozenFile = new File(location, "frozen");
 			try {
-				frozenItems=(HashSet<T>) new ObjectInputStream(new FileInputStream(frozenFile)).readObject();
+				frozenItems = (HashSet<T>) new ObjectInputStream(new FileInputStream(frozenFile)).readObject();
 			} catch (OptionalDataException e) {
 				throw new IOException(e);
 			} catch (StreamCorruptedException e) {
@@ -51,17 +51,17 @@ public class CacheManager<T extends Serializable>{
 			} catch (ClassNotFoundException e) {
 				throw new IOException(e);
 			}
-		}catch(IOException e){
-			frozenItems=new HashSet<T>();
+		} catch (IOException e) {
+			frozenItems = new HashSet<T>();
 		}
 	}
 
-	public synchronized boolean cacheEmpty(){
+	public synchronized boolean cacheEmpty() {
 		return cacheItems.isEmpty();
 	}
 
-	public synchronized boolean cache(final T t){
-		return doCacheOp(new SetOp<T>(){
+	public synchronized boolean cache(final T t) {
+		return doCacheOp(new SetOp<T>() {
 			@Override
 			public void doOp(Set<T> s) {
 				s.add(t);
@@ -69,8 +69,8 @@ public class CacheManager<T extends Serializable>{
 		});
 	}
 
-	public synchronized boolean freeze(final T t){
-		return doFrozenOp(new SetOp<T>(){
+	public synchronized boolean freeze(final T t) {
+		return doFrozenOp(new SetOp<T>() {
 			@Override
 			public void doOp(Set<T> s) {
 				s.add(t);
@@ -78,8 +78,8 @@ public class CacheManager<T extends Serializable>{
 		});
 	}
 
-	public synchronized boolean unCache(final T t){
-		return doCacheOp(new SetOp<T>(){
+	public synchronized boolean unCache(final T t) {
+		return doCacheOp(new SetOp<T>() {
 			@Override
 			public void doOp(Set<T> s) {
 				s.remove(t);
@@ -87,8 +87,8 @@ public class CacheManager<T extends Serializable>{
 		});
 	}
 
-	public synchronized boolean unFreeze(final T t){
-		return doFrozenOp(new SetOp<T>(){
+	public synchronized boolean unFreeze(final T t) {
+		return doFrozenOp(new SetOp<T>() {
 			@Override
 			public void doOp(Set<T> s) {
 				s.remove(t);
@@ -96,40 +96,36 @@ public class CacheManager<T extends Serializable>{
 		});
 	}
 
-	public synchronized T getCached(){
-		if(!cacheItems.isEmpty()){
-			return cacheItems.iterator().next();
-		}
+	public synchronized T getCached() {
+		if (!cacheItems.isEmpty()) { return cacheItems.iterator().next(); }
 		return null;
 	}
 
-	public synchronized T getFrozen(){
-		if(!frozenItems.isEmpty()){
-			return frozenItems.iterator().next();
-		}
+	public synchronized T getFrozen() {
+		if (!frozenItems.isEmpty()) { return frozenItems.iterator().next(); }
 		return null;
 	}
 
-	public synchronized int numCached(){
+	public synchronized int numCached() {
 		return cacheItems.size();
 	}
 
-	public synchronized int numFrozen(){
+	public synchronized int numFrozen() {
 		return frozenItems.size();
 	}
 
-	private boolean doFrozenOp(SetOp<T> op){
-		return doOnCachedSet(frozenItems,op,"frozen",location);
+	private boolean doFrozenOp(SetOp<T> op) {
+		return doOnCachedSet(frozenItems, op, "frozen", location);
 	}
 
-	private boolean doCacheOp(SetOp<T> op){
-		return doOnCachedSet(cacheItems,op,"set",location);
+	private boolean doCacheOp(SetOp<T> op) {
+		return doOnCachedSet(cacheItems, op, "set", location);
 	}
 
-	private static <T> boolean doOnCachedSet(Set<T> old,SetOp<T> o,String set,File location){
-		Set<T> newSet=new HashSet<T>(old);
+	private static <T> boolean doOnCachedSet(Set<T> old, SetOp<T> o, String set, File location) {
+		Set<T> newSet = new HashSet<T>(old);
 		o.doOp(newSet);
-		File frozenFile=new File(location,set);
+		File frozenFile = new File(location, set);
 		try {
 			new ObjectOutputStream(new FileOutputStream(frozenFile)).writeObject(newSet);
 		} catch (FileNotFoundException e) {
@@ -142,7 +138,8 @@ public class CacheManager<T extends Serializable>{
 		return true;
 
 	}
-	private interface SetOp<T>{
+
+	private interface SetOp<T> {
 		public void doOp(Set<T> s);
 	}
 }

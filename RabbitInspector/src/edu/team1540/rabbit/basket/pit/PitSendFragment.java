@@ -7,23 +7,23 @@ import android.widget.Button;
 import edu.team1540.egg.impl.dispatching.DispatchingFragment;
 import edu.team1540.inspector.R;
 
-public class PitSendFragment extends DispatchingFragment{
+public class PitSendFragment extends DispatchingFragment {
 
 	public PitSendFragment() {
 		super(R.layout.pit_fragment_send);
 	}
 
-	public void readyLayout(){
-		Log.w("RABBIT","SETUP!");
-		this.setDecrement(this.<Button>getAsView(R.id.pit_send_previous_button));
-		Button transmit=this.<Button>getAsView(R.id.pit_send_button);
-		transmit.setOnClickListener(new OnClickListener(){
+	public void readyLayout() {
+		Log.w("RABBIT", "SETUP!");
+		this.setDecrement(this.<Button> getAsView(R.id.pit_send_previous_button));
+		Button transmit = this.<Button> getAsView(R.id.pit_send_button);
+		transmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(submitDispatch()){
+				if (submitDispatch()) {
 					launchFlushThread();
 					attemptDecrementCurrentBasket();
-					Log.i("RABBIT","success!");
+					Log.i("RABBIT", "success!");
 				}
 			}
 		});
