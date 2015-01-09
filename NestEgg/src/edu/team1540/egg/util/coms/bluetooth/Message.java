@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public final class Message implements Serializable {
 	/**
-	 * REMEBER TO CHANGE THIS IF YOU EDIT THIS CLASS, WHICH YOU SHOULDN'T
+	 * REMEMBER TO CHANGE THIS IF YOU EDIT THIS CLASS, WHICH YOU SHOULDN'T
 	 */
 	private static final long serialVersionUID = 7;
 	public final String message;
