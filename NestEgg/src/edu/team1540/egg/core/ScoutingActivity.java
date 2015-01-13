@@ -21,7 +21,7 @@ public abstract class ScoutingActivity extends Activity implements DrawerCallbac
 	private FragmentBasket currentBasket = null;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scouting);
 		Log.i("NEST_EGG", "creating scouting activity...");
@@ -32,25 +32,27 @@ public abstract class ScoutingActivity extends Activity implements DrawerCallbac
 	}
 
 	@Override
-	public void itemSelected(FragmentBasket item) {
+	public void itemSelected(final FragmentBasket item) {
 		// update the main content by replacing fragments
 		currentBasket = item;
 		Log.i("NEST_EGG", item.toString());
-		FragmentManager fragmentManager = getFragmentManager();
-		Fragment target = item.getFragment();
-		if (target == null) { throw new NullPointerException(); }
+		final FragmentManager fragmentManager = getFragmentManager();
+		final Fragment target = item.getFragment();
+		if (target == null) {
+			throw new NullPointerException();
+		}
 		fragmentManager.beginTransaction().replace(R.id.container, target).commit();
 	}
 
 	public void restoreActionBar() {
-		ActionBar actionBar = getActionBar();
+		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.title_activity_scouting);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(final Menu menu) {
 		if (!navigationDrawerWrapper.isDrawerOpen()) {
 			restoreActionBar();
 			return true;
@@ -58,10 +60,13 @@ public abstract class ScoutingActivity extends Activity implements DrawerCallbac
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	public void basketNeedsRedrawn(FragmentBasket source) {
-		FragmentManager fragmentManager = getFragmentManager();
-		Fragment target = source.getFragment();
-		if (target == null) { throw new NullPointerException(); }
+	@Override
+	public void basketNeedsRedrawn(final FragmentBasket source) {
+		final FragmentManager fragmentManager = getFragmentManager();
+		final Fragment target = source.getFragment();
+		if (target == null) {
+			throw new NullPointerException();
+		}
 		fragmentManager.beginTransaction().replace(R.id.container, target).commit();
 	}
 

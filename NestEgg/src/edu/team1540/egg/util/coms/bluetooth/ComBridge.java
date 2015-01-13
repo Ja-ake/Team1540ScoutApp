@@ -24,22 +24,22 @@ public class ComBridge {
 	public final String targetAddress;
 	public final String targetUUID;
 
-	public ComBridge(Activity a, String dispatchName, String targetAddress, String targetUUID) {
+	public ComBridge(final Activity a, final String dispatchName, final String targetAddress, final String targetUUID) {
 		this.targetAddress = targetAddress;
 		this.targetUUID = targetUUID;
-		this.cacheManager = new CacheManager<Message>(a, "comBridge_" + dispatchName);
+		cacheManager = new CacheManager<Message>(a, "comBridge_" + dispatchName);
 	}
 
 	public synchronized AtomicReference<Condition> reconnect() {
 		if (connection != null && !connection.isDone()) {
 			connection.cancel();
 		}
-		BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+		final BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
 		final AtomicReference<Condition> condition = new AtomicReference<Condition>(Condition.WORKING);
 		condition.set(Condition.WORKING);
 		new ConnecterThread(adapter, adapter.getRemoteDevice(targetAddress), targetUUID, new SocketManager() {
 			@Override
-			public void manageSocket(BluetoothSocket socket) {
+			public void manageSocket(final BluetoothSocket socket) {
 				synchronized (condition) {
 					connection = new ConnectedThread(socket);
 					condition.set(Condition.COMPLETED);
@@ -56,12 +56,12 @@ public class ComBridge {
 	}
 
 	public synchronized boolean blockReconnect() {
-		AtomicReference<Condition> condition = reconnect();
+		final AtomicReference<Condition> condition = reconnect();
 		synchronized (condition) {
 			while (condition.get() == Condition.WORKING) {
 				try {
 					condition.wait(10);
-				} catch (InterruptedException e) {
+				} catch (final InterruptedException e) {
 				}
 			}
 			switch (condition.get()) {
@@ -75,7 +75,7 @@ public class ComBridge {
 		}
 	}
 
-	public void queueMessage(Message m) {
+	public void queueMessage(final Message m) {
 		queuedMessages.add(m);
 	}
 
@@ -90,11 +90,15 @@ public class ComBridge {
 		return cleared;
 	}
 
-	private synchronized boolean sendMessage(Message target) {
+	private synchronized boolean sendMessage(final Message target) {
 		Log.i("NEST_EGG", "sending message...");
-		if (target == null) { return true; }
+		if (target == null) {
+			return true;
+		}
 		if (connection == null || connection.isDone()) {
-			if (!blockReconnect()) { return false; }
+			if (!blockReconnect()) {
+				return false;
+			}
 		}
 		Log.i("NEST_EGG", "passed checks...");
 		try {
@@ -102,13 +106,13 @@ public class ComBridge {
 			connection.write(target.message);
 			connection.write(target.type);
 			return true;
-		} catch (IOException e1) {
+		} catch (final IOException e1) {
 			return false;
 		}
 	}
 
 	public synchronized boolean attemptQueuedMessage() {
-		Message m = queuedMessages.poll();
+		final Message m = queuedMessages.poll();
 		if (sendMessage(m)) {
 			cacheManager.freeze(m);
 			return true;
@@ -119,7 +123,7 @@ public class ComBridge {
 	}
 
 	public synchronized boolean attemptCachedMessage() {
-		Message m = cacheManager.getCached();
+		final Message m = cacheManager.getCached();
 		if (sendMessage(m)) {
 			cacheManager.unCache(m);
 			cacheManager.freeze(m);

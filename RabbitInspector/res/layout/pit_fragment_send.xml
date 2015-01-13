@@ -28,32 +28,31 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" >
 
-        <TextView
-            android:id="@+id/pit_send_prompt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/send_prompt"
-            android:textSize="20sp" />
-
         <Button
             android:id="@+id/pit_send_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pit_send_prompt"
             android:layout_centerInParent="true"
             android:text="@string/send_button_prompt" />
 
         <Spinner
-            android:id="@+id/transmit_address"
+            android:id="@+id/pit_transmit_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="21dp"
+            android:layout_above="@+id/pit_send_button"
+            android:layout_alignParentLeft="true"
             android:entries="@string/app_name"
             android:prompt="@string/app_name"
             android:tag="@string/app_name" />
+
+        <TextView
+            android:id="@+id/pit_send_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/pit_transmit_spinner"
+            android:layout_centerHorizontal="true"
+            android:text="@string/send_prompt"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

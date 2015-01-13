@@ -13,13 +13,14 @@ public class PitSendFragment extends DispatchingFragment {
 		super(R.layout.pit_fragment_send);
 	}
 
+	@Override
 	public void readyLayout() {
 		Log.w("RABBIT", "SETUP!");
-		this.setDecrement(this.<Button> getAsView(R.id.pit_send_previous_button));
-		Button transmit = this.<Button> getAsView(R.id.pit_send_button);
+		setDecrement(this.<Button> getAsView(R.id.pit_send_previous_button));
+		final Button transmit = this.<Button> getAsView(R.id.pit_send_button);
 		transmit.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v) {
+			public void onClick(final View v) {
 				if (submitDispatch()) {
 					launchFlushThread();
 					attemptDecrementCurrentBasket();

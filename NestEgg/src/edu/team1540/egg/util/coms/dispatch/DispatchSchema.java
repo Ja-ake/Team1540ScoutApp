@@ -12,22 +12,24 @@ public class DispatchSchema {
 	private final String schemaType;
 	private boolean finalized = false;
 
-	public DispatchSchema(String schemaType) {
+	public DispatchSchema(final String schemaType) {
 		this.schemaType = schemaType;
 	}
 
-	public DispatchSchema r(String requirment) {
+	public DispatchSchema r(final String requirment) {
 		require(requirment);
 		return this;
 	}
 
-	public DispatchSchema require(String... requirment) {
-		if (finalized) { throw new IllegalStateException("Already finalized!"); }
+	public DispatchSchema require(final String... requirment) {
+		if (finalized) {
+			throw new IllegalStateException("Already finalized!");
+		}
 		requirments.addAll(Arrays.asList(requirment));
 		return this;
 	}
 
-	public boolean fulfills(Collection<String> fufilledRequirments) {
+	public boolean fulfills(final Collection<String> fufilledRequirments) {
 		return fufilledRequirments.containsAll(requirments);
 	}
 
@@ -35,16 +37,19 @@ public class DispatchSchema {
 		return Collections.unmodifiableList(requirments);
 	}
 
-	public List<String> getValues(Map<String, String> reqValMap) {
-		List<String> vals = new ArrayList<String>();
-		for (String require : requirments) {
+	public List<String> getValues(final Map<String, String> reqValMap) {
+		final List<String> vals = new ArrayList<String>();
+		for (final String require : requirments) {
 			vals.add(reqValMap.get(require));
 		}
 		return vals;
 	}
 
+	@Override
 	public void finalize() {
-		if (finalized) { throw new IllegalStateException("Already finalized!"); }
+		if (finalized) {
+			throw new IllegalStateException("Already finalized!");
+		}
 		finalized = true;
 	}
 

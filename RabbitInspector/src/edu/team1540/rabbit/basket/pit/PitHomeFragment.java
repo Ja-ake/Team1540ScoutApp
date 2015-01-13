@@ -14,13 +14,14 @@ public class PitHomeFragment extends DispatchingFragment {
 		super(R.layout.pit_fragment_home);
 	}
 
+	@Override
 	public void readyLayout() {
 		patchDispatch("scout", "Gregor");
 		patchDispatch("robot", GatherUtil.asGatherer(this.<Spinner> getAsView(R.id.pit_team_measure)));
 		patchDispatch("mainWheelType", GatherUtil.asGatherer(this.<Spinner> getAsView(R.id.pit_wheeltype_measure)));
 		patchDispatch("coolnessOfWidgets", GatherUtil.asGatherer(this.<ProgressBar> getAsView(R.id.pit_widget_mesure)));
 		patchDispatch("chillness", GatherUtil.asGatherer(this.<ProgressBar> getAsView(R.id.pit_chillness_mesure)));
-		patchDispatch("numWheels", CounterFragment.getCounterGatherer(R.id.pit_wheelnum_measure_fragment, this.getChildFragmentManager()));
+		patchDispatch("numWheels", CounterFragment.getCounterGatherer(R.id.pit_wheelnum_measure_fragment, getChildFragmentManager()));
 		// Setup the buttons
 		setIncrement(this.<Button> getAsView(R.id.pit_home_next_button));
 	}

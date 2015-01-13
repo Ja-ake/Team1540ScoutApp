@@ -8,27 +8,27 @@ import edu.team1540.egg.impl.drawer.NavigationDrawerFragment.NavigationDrawerCal
 
 public class NavigationDrawerWrapper<T> implements NavigationDrawerCallbacks {
 
-	private NavigationDrawerFragment represents;
+	private final NavigationDrawerFragment represents;
 	private final NamedSelection<T>[] options;
 	public DrawerCallback<T> callback;
 
-	public NavigationDrawerWrapper(Activity a, NamedSelection<T>[] options) {
+	public NavigationDrawerWrapper(final Activity a, final NamedSelection<T>[] options) {
 		this.options = options;
 		represents = (NavigationDrawerFragment) a.getFragmentManager().findFragmentById(R.id.navigation_drawer);
 		represents.callbacks = this;
 	}
 
 	@Override
-	public void onNavigationDrawerItemSelected(int position) {
+	public void onNavigationDrawerItemSelected(final int position) {
 		if (callback != null) {
 			callback.itemSelected(options[position].getItem());
 		}
 	}
 
-	public void setUp(Activity a) {
-		String[] stringOptions = new String[options.length];
+	public void setUp(final Activity a) {
+		final String[] stringOptions = new String[options.length];
 		int count = -1;
-		for (NamedSelection<T> selection : options) {
+		for (final NamedSelection<T> selection : options) {
 			count++;
 			stringOptions[count] = selection.getName();
 		}

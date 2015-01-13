@@ -10,7 +10,7 @@ public final class Message implements Serializable {
 	public final String message;
 	public final String type;
 
-	public Message(String type, String message) {
+	public Message(final String type, final String message) {
 		this.message = message;
 		this.type = type;
 	}

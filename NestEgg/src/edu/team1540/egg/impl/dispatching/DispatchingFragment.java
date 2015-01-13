@@ -15,11 +15,11 @@ public abstract class DispatchingFragment extends ScoutingFragment {
 	private AtomicReference<Dispatch> dispatch;
 	private ComBridge bridge;
 
-	public DispatchingFragment(int layoutID) {
+	public DispatchingFragment(final int layoutID) {
 		super(layoutID);
 	}
 
-	public final void init(AtomicReference<Dispatch> dispatch, ComBridge bridge) {
+	public final void init(final AtomicReference<Dispatch> dispatch, final ComBridge bridge) {
 		this.dispatch = dispatch;
 		this.bridge = bridge;
 	}
@@ -28,27 +28,27 @@ public abstract class DispatchingFragment extends ScoutingFragment {
 		return submitDispatch(getDispatcher().schema);
 	}
 
-	public boolean submitDispatch(DispatchSchema schema) {
+	public boolean submitDispatch(final DispatchSchema schema) {
 		try {
 			bridge.queueMessage(getDispatcher().toMessage());
 			setDispatcher(new Dispatch(schema));
 			return true;
-		} catch (IllegalStateException e) {
+		} catch (final IllegalStateException e) {
 			Log.i("NEST_EGG", e.toString());
 			return false;
 		}
 	}
 
-	public void patchDispatch(String requirment, String value) {
+	public void patchDispatch(final String requirment, final String value) {
 		getDispatcher().patch(requirment, value);
 	}
 
-	public void patchDispatch(String requirment, Gatherer g) {
+	public void patchDispatch(final String requirment, final Gatherer g) {
 		getDispatcher().patch(requirment, g);
 	}
 
-	public void patchDispatch(Map<String, Gatherer> toPatch) {
-		for (Entry<String, Gatherer> patching : toPatch.entrySet()) {
+	public void patchDispatch(final Map<String, Gatherer> toPatch) {
+		for (final Entry<String, Gatherer> patching : toPatch.entrySet()) {
 			patchDispatch(patching.getKey(), patching.getValue());
 		}
 	}
@@ -62,9 +62,9 @@ public abstract class DispatchingFragment extends ScoutingFragment {
 			@Override
 			public void run() {
 				try {
-					boolean result = tryFlushComBridge();
+					final boolean result = tryFlushComBridge();
 					Log.i("NEST_EGG", "flushed:" + result);
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					Log.i("NEST_EGG", e.toString());
 					throw new RuntimeException(e);
 				}
@@ -76,7 +76,7 @@ public abstract class DispatchingFragment extends ScoutingFragment {
 		return dispatch.get();
 	}
 
-	public Dispatch setDispatcher(Dispatch d) {
+	public Dispatch setDispatcher(final Dispatch d) {
 		return dispatch.getAndSet(d);
 	}
 }

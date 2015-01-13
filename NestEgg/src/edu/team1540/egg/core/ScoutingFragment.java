@@ -13,7 +13,7 @@ public class ScoutingFragment extends Fragment {
 
 	private final int layoutID;
 
-	public ScoutingFragment(int layoutID) {
+	public ScoutingFragment(final int layoutID) {
 		this.layoutID = layoutID;
 	}
 
@@ -28,47 +28,47 @@ public class ScoutingFragment extends Fragment {
 		// Hack around known android issue
 		super.onDetach();
 		try {
-			Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+			final Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
 			childFragmentManager.setAccessible(true);
 			childFragmentManager.set(this, null);
-		} catch (NoSuchFieldException e) {
+		} catch (final NoSuchFieldException e) {
 			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
+		} catch (final IllegalAccessException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends View> T getAsView(int id) {
-		return (T) this.getView().findViewById(id);
+	public <T extends View> T getAsView(final int id) {
+		return (T) getView().findViewById(id);
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends Fragment> T getAsFragment(int id) {
+	public <T extends Fragment> T getAsFragment(final int id) {
 		return (T) getChildFragmentManager().findFragmentById(id);
 	}
 
 	public void attemptIncrementCurrentBasket() {
-		((ScoutingActivity) this.getActivity()).incrementCurrentBasket();
+		((ScoutingActivity) getActivity()).incrementCurrentBasket();
 	}
 
 	public void attemptDecrementCurrentBasket() {
-		((ScoutingActivity) this.getActivity()).decrementCurrentBasket();
+		((ScoutingActivity) getActivity()).decrementCurrentBasket();
 	}
 
-	public void setIncrement(View v) {
+	public void setIncrement(final View v) {
 		v.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v) {
+			public void onClick(final View v) {
 				attemptIncrementCurrentBasket();
 			}
 		});
 	}
 
-	public void setDecrement(View v) {
+	public void setDecrement(final View v) {
 		v.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v) {
+			public void onClick(final View v) {
 				attemptDecrementCurrentBasket();
 			}
 		});

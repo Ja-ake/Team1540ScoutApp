@@ -1,7 +1,6 @@
 package edu.team1540.egg.util.coms.bluetooth.bridge;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 
 import android.bluetooth.BluetoothAdapter;
@@ -15,7 +14,7 @@ public class ConnecterThread extends Thread {
 	private final SocketManager toManage;
 	private final int attempts;
 
-	public ConnecterThread(final BluetoothAdapter adapter, final BluetoothDevice device, final String uuid, final SocketManager s, int attempts) {
+	public ConnecterThread(final BluetoothAdapter adapter, final BluetoothDevice device, final String uuid, final SocketManager s, final int attempts) {
 		BluetoothSocket tmp = null;
 		try {
 			tmp = device.createRfcommSocketToServiceRecord(UUID.fromString(uuid));
@@ -26,7 +25,7 @@ public class ConnecterThread extends Thread {
 		mBluetoothAdapter = adapter;
 		toManage = s;
 		this.attempts = attempts;
-		this.start();
+		start();
 	}
 
 	@Override
@@ -40,7 +39,8 @@ public class ConnecterThread extends Thread {
 				return;
 			} catch (final IOException connectException) {
 				final int sleepTime = (int) (Math.random() * 1000 + 500);
-				Log.e("NEST_EGG", "Bad connect attempt:" + x + ", retrying in a " + sleepTime / 1000.0 + " seconds");
+				Log.e("NEST_EGG", "Bad connect attempt:" + x
+						+ ", retrying in a " + sleepTime / 1000.0 + " seconds");
 				try {
 					Thread.sleep(sleepTime);
 				} catch (final InterruptedException e) {

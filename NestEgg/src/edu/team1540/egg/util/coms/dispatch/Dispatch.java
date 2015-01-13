@@ -15,21 +15,23 @@ public class Dispatch {
 	private final Map<String, String> requirmentValueMap;
 	private final Map<String, Gatherer> gatherers = new HashMap<String, Gatherer>();
 
-	public Dispatch(DispatchSchema schema) {
+	public Dispatch(final DispatchSchema schema) {
 		this(schema, new HashMap<String, String>());
 	}
 
-	public Dispatch(DispatchSchema schema, Map<String, String> startingValues) {
-		if (!schema.isFinalized()) { throw new IllegalStateException("Unfinalized schema!"); }
+	public Dispatch(final DispatchSchema schema, final Map<String, String> startingValues) {
+		if (!schema.isFinalized()) {
+			throw new IllegalStateException("Unfinalized schema!");
+		}
 		this.schema = schema;
-		this.requirmentValueMap = startingValues;
+		requirmentValueMap = startingValues;
 	}
 
-	public void patch(String requirment, String value) {
+	public void patch(final String requirment, final String value) {
 		requirmentValueMap.put(requirment, value);
 	}
 
-	public void patch(String requirment, Gatherer g) {
+	public void patch(final String requirment, final Gatherer g) {
 		gatherers.put(requirment, g);
 		requirmentValueMap.put(requirment, g.gather());
 	}
@@ -40,25 +42,27 @@ public class Dispatch {
 
 	public Message toMessage() {
 		// Update gatherers
-		for (String req : gatherers.keySet()) {
+		for (final String req : gatherers.keySet()) {
 			requirmentValueMap.put(req, gatherers.get(req).gather());
 		}
 		// Check if it now fulfills the schema
-		if (!ready()) { throw new IllegalStateException("Requirments not fulfilled!"); }
-		String encodedMessage = TextUtils.join("\n", encode(schema.getRequirments(), schema.getValues(requirmentValueMap)));
+		if (!ready()) {
+			throw new IllegalStateException("Requirments not fulfilled!");
+		}
+		final String encodedMessage = TextUtils.join("\n", Dispatch.encode(schema.getRequirments(), schema.getValues(requirmentValueMap)));
 		return new Message(schema.getType(), encodedMessage);
 	}
 
-	public static String encode(String requirment, String value) {
+	public static String encode(final String requirment, final String value) {
 		return requirment + ":" + value;
 	}
 
-	public static String[] encode(Collection<String> requirment, Collection<String> value) {
-		Iterator<String> requirments = requirment.iterator();
-		Iterator<String> values = value.iterator();
-		List<String> encodedPairs = new ArrayList<String>();
+	public static String[] encode(final Collection<String> requirment, final Collection<String> value) {
+		final Iterator<String> requirments = requirment.iterator();
+		final Iterator<String> values = value.iterator();
+		final List<String> encodedPairs = new ArrayList<String>();
 		while (requirments.hasNext()) {
-			encodedPairs.add(encode(requirments.next(), values.next()));
+			encodedPairs.add(Dispatch.encode(requirments.next(), values.next()));
 		}
 		String[] pairArray = new String[encodedPairs.size()];
 		pairArray = encodedPairs.toArray(pairArray);

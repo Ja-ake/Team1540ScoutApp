@@ -23,35 +23,35 @@ public class CacheManager<T extends Serializable> {
 	private Set<T> frozenItems;
 
 	@SuppressWarnings("unchecked")
-	public CacheManager(Activity a, String cacheName) {
+	public CacheManager(final Activity a, final String cacheName) {
 		location = new File(a.getDir("cacheManager", Context.MODE_PRIVATE), cacheName);
 		try {
-			File setFile = new File(location, "set");
+			final File setFile = new File(location, "set");
 
 			try {
 				cacheItems = (HashSet<T>) new ObjectInputStream(new FileInputStream(setFile)).readObject();
-			} catch (OptionalDataException e) {
+			} catch (final OptionalDataException e) {
 				throw new IOException(e);
-			} catch (StreamCorruptedException e) {
+			} catch (final StreamCorruptedException e) {
 				throw new IOException(e);
-			} catch (ClassNotFoundException e) {
+			} catch (final ClassNotFoundException e) {
 				throw new IOException(e);
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			cacheItems = new HashSet<T>();
 		}
 		try {
-			File frozenFile = new File(location, "frozen");
+			final File frozenFile = new File(location, "frozen");
 			try {
 				frozenItems = (HashSet<T>) new ObjectInputStream(new FileInputStream(frozenFile)).readObject();
-			} catch (OptionalDataException e) {
+			} catch (final OptionalDataException e) {
 				throw new IOException(e);
-			} catch (StreamCorruptedException e) {
+			} catch (final StreamCorruptedException e) {
 				throw new IOException(e);
-			} catch (ClassNotFoundException e) {
+			} catch (final ClassNotFoundException e) {
 				throw new IOException(e);
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			frozenItems = new HashSet<T>();
 		}
 	}
@@ -63,7 +63,7 @@ public class CacheManager<T extends Serializable> {
 	public synchronized boolean cache(final T t) {
 		return doCacheOp(new SetOp<T>() {
 			@Override
-			public void doOp(Set<T> s) {
+			public void doOp(final Set<T> s) {
 				s.add(t);
 			}
 		});
@@ -72,7 +72,7 @@ public class CacheManager<T extends Serializable> {
 	public synchronized boolean freeze(final T t) {
 		return doFrozenOp(new SetOp<T>() {
 			@Override
-			public void doOp(Set<T> s) {
+			public void doOp(final Set<T> s) {
 				s.add(t);
 			}
 		});
@@ -81,7 +81,7 @@ public class CacheManager<T extends Serializable> {
 	public synchronized boolean unCache(final T t) {
 		return doCacheOp(new SetOp<T>() {
 			@Override
-			public void doOp(Set<T> s) {
+			public void doOp(final Set<T> s) {
 				s.remove(t);
 			}
 		});
@@ -90,19 +90,23 @@ public class CacheManager<T extends Serializable> {
 	public synchronized boolean unFreeze(final T t) {
 		return doFrozenOp(new SetOp<T>() {
 			@Override
-			public void doOp(Set<T> s) {
+			public void doOp(final Set<T> s) {
 				s.remove(t);
 			}
 		});
 	}
 
 	public synchronized T getCached() {
-		if (!cacheItems.isEmpty()) { return cacheItems.iterator().next(); }
+		if (!cacheItems.isEmpty()) {
+			return cacheItems.iterator().next();
+		}
 		return null;
 	}
 
 	public synchronized T getFrozen() {
-		if (!frozenItems.isEmpty()) { return frozenItems.iterator().next(); }
+		if (!frozenItems.isEmpty()) {
+			return frozenItems.iterator().next();
+		}
 		return null;
 	}
 
@@ -114,23 +118,23 @@ public class CacheManager<T extends Serializable> {
 		return frozenItems.size();
 	}
 
-	private boolean doFrozenOp(SetOp<T> op) {
-		return doOnCachedSet(frozenItems, op, "frozen", location);
+	private boolean doFrozenOp(final SetOp<T> op) {
+		return CacheManager.doOnCachedSet(frozenItems, op, "frozen", location);
 	}
 
-	private boolean doCacheOp(SetOp<T> op) {
-		return doOnCachedSet(cacheItems, op, "set", location);
+	private boolean doCacheOp(final SetOp<T> op) {
+		return CacheManager.doOnCachedSet(cacheItems, op, "set", location);
 	}
 
-	private static <T> boolean doOnCachedSet(Set<T> old, SetOp<T> o, String set, File location) {
-		Set<T> newSet = new HashSet<T>(old);
+	private static <T> boolean doOnCachedSet(final Set<T> old, final SetOp<T> o, final String set, final File location) {
+		final Set<T> newSet = new HashSet<T>(old);
 		o.doOp(newSet);
-		File frozenFile = new File(location, set);
+		final File frozenFile = new File(location, set);
 		try {
 			new ObjectOutputStream(new FileOutputStream(frozenFile)).writeObject(newSet);
-		} catch (FileNotFoundException e) {
+		} catch (final FileNotFoundException e) {
 			return false;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			return false;
 		}
 		old.clear();

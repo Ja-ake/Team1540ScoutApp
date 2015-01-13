@@ -10,7 +10,7 @@ public class FragmentBasket implements NamedSelection<FragmentBasket> {
 	private final BasketDrawCallbacks callbacks;
 	private int selection = 0;
 
-	public <T extends Activity & BasketDrawCallbacks> FragmentBasket(BasketDrawCallbacks callbacks, String name, Fragment... fragments) {
+	public <T extends Activity & BasketDrawCallbacks> FragmentBasket(final BasketDrawCallbacks callbacks, final String name, final Fragment... fragments) {
 		this.name = name;
 		this.fragments = fragments;
 		this.callbacks = callbacks;
