@@ -5,6 +5,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="server_address">60:C5:47:90:D9:15</string>
+    <string name="server_address_jake">00:19:0E:16:B2:2C</string>
     <string name="server_UUID" tools:ignore="TypographyDashes">513A4666-E634-43E0-A2FA-DC74058D74A2</string>
     <string name="next_prompt">&gt;&gt;</string>
     <string name="previous_prompt">&lt;&lt;</string>
@@ -15,5 +16,6 @@
     <string name="widget_prompt">Widget Value:</string>
     <string name="send_prompt">Ready To Transmit?</string>
     <string name="send_button_prompt">Send</string>
+    <string name="send_button_address">Address</string>
 
 </resources>

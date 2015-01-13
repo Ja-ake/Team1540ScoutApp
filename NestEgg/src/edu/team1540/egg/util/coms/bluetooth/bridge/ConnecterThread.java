@@ -1,6 +1,7 @@
 package edu.team1540.egg.util.coms.bluetooth.bridge;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 
 import android.bluetooth.BluetoothAdapter;
@@ -52,7 +53,6 @@ public class ConnecterThread extends Thread {
 			mmSocket.close();
 		} catch (final IOException closeException) {
 		}
-
 	}
 
 	public void cancel() {

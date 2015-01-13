@@ -44,6 +44,17 @@
             android:layout_centerInParent="true"
             android:text="@string/send_button_prompt" />
 
+        <Spinner
+            android:id="@+id/transmit_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:entries="@string/app_name"
+            android:prompt="@string/app_name"
+            android:tag="@string/app_name" />
+
     </RelativeLayout>
 
 </RelativeLayout>

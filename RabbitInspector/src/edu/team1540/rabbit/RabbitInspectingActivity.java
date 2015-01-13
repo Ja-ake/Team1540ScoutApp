@@ -10,17 +10,11 @@ import edu.team1540.rabbit.basket.pit.PitHomeFragment;
 import edu.team1540.rabbit.basket.pit.PitSendFragment;
 import edu.team1540.rabbit.schema.RabbitSchemas;
 
-
-public class RabbitInspectingActivity extends ScoutingActivity{
+public class RabbitInspectingActivity extends ScoutingActivity {
 	@Override
 	public FragmentBasket[] getPages() {
-		ComBridge uplink=new ComBridge(this, "bunnyBotsScouting", getString(R.string.server_address), getString(R.string.server_UUID));
-		return new FragmentBasket[]{
-				new FragmentBasket(this,"Home",
-						new HomeFragment()),
-				new DispatchingBasket(uplink, RabbitSchemas.PIT_SCOUT.SCHEME, this, "Pit Scouting!",
-						new PitHomeFragment(),
-						new PitSendFragment()),
-				};
+		ComBridge uplink = new ComBridge(this, "bunnyBotsScouting", getString(R.string.server_address), getString(R.string.server_UUID));
+		return new FragmentBasket[] { new FragmentBasket(this, "Home", new HomeFragment()),
+				new DispatchingBasket(uplink, RabbitSchemas.PIT_SCOUT.SCHEME, this, "Pit Scouting!", new PitHomeFragment(), new PitSendFragment()), };
 	}
 }
