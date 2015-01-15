@@ -41,8 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/pit_send_button"
             android:layout_alignParentLeft="true"
-            android:entries="@string/app_name"
-            android:prompt="@string/app_name"
             android:tag="@string/app_name" />
 
         <TextView
