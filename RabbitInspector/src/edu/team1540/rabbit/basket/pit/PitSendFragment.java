@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Spinner;
 import edu.team1540.egg.impl.dispatching.DispatchingFragment;
 import edu.team1540.inspector.R;
 
@@ -29,8 +28,5 @@ public class PitSendFragment extends DispatchingFragment {
 				}
 			}
 		});
-		
-		final Spinner selectAddress = this.<Spinner> getAsView(R.id.pit_transmit_spinner);
-		selectAddress.bringToFront();
 	}
 }
