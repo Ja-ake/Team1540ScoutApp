@@ -41,6 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/pit_send_button"
             android:layout_alignParentLeft="true"
+            android:entries="@array/bluetooth_address_options"
+            android:prompt="@string/send_button_address"
             android:tag="@string/app_name" />
 
         <TextView
