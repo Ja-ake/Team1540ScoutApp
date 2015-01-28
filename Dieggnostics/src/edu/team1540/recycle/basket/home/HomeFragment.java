@@ -8,5 +8,4 @@ public class HomeFragment extends ScoutingFragment {
 	public HomeFragment() {
 		super(R.layout.home_fragment_home);
 	}
-
 }
