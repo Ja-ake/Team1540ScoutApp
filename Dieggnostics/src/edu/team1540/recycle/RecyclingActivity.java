@@ -11,7 +11,7 @@ public class RecyclingActivity extends ScoutingActivity {
 	public FragmentBasket[] getPages() {
 		return new FragmentBasket[] { 
 				new FragmentBasket(this, "Home", new HomeFragment()), 
-				new FragmentBasket(this, "Stand Scouting", new TeleOpFragment()) 
+				new FragmentBasket(this, "Stand Scouting", new TeleOpFragment(this)) 
 			};
 	}
 }

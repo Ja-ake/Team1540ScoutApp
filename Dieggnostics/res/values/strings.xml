@@ -15,7 +15,7 @@
     <string name="stand_auto_redo">Redo</string>
 	<string name="stand_auto_litter">Litter</string>
 	<string name="stand_auto_containers">Containers</string>
-	<string name="stand_auto_container">Conatiner</string>
+	<string name="stand_auto_container">Container</string>
 	<string name="stand_auto_landfill">Landfill</string>
 	<string name="stand_auto_other_side">Other Side</string>
 	<string name="stand_auto_tipped">Tipped</string>
@@ -25,7 +25,7 @@
 	<string name="stand_auto_2">2</string>
 	<string name="stand_auto_3">3</string>
 	<string name="stand_auto_4">4</string>
-	<string name="stand_auto_erors">Errors</string>
+	<string name="stand_auto_errors">Errors</string>
 	<string name="stand_auto_auto">Auto</string>
 	<string name="stand_auto_tele">Tele</string>
 	<string name="stand_auto_final">Final</string>

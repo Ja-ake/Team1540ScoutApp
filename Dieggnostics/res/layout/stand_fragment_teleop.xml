@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="top"
+    android:minHeight="5000dp"
     android:orientation="vertical" >
 
     <Button
@@ -13,36 +14,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/button4"
+        android:layout_marginRight="15dp"
         android:text="@string/stand_auto_redo" />
-
-    <Button
-        android:id="@+id/button4"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
-        android:layout_toLeftOf="@+id/button5"
-        android:layout_toRightOf="@+id/totes_surface"
-        android:text="@string/stand_auto_undo" />
 
     <SurfaceView
         android:id="@+id/totes_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button4"
+        android:layout_above="@+id/relativeLayout2"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:layout_toLeftOf="@+id/button3" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/stand_auto_submit"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="40dp" />
+        android:layout_toLeftOf="@+id/button3"
+        android:minHeight="1000dp" />
 
     <Button
         android:id="@+id/button1"
@@ -50,16 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/button2"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
         android:layout_toRightOf="@+id/totes_surface"
         android:text="@string/stand_auto_close" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/button1"
-        android:text="@string/stand_auto_cooperatition" />
 
     <Button
         android:id="@+id/button2"
@@ -67,6 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView1"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/totes_surface"
         android:text="@string/stand_auto_far" />
 
@@ -81,32 +60,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/totes_surface"
-        android:text="@string/stand_auto_container"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_toLeftOf="@+id/textView2"
-        android:text="@string/stand_auto_landfill"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/totes_surface"
-        android:layout_toLeftOf="@+id/textView2"
-        android:layout_toRightOf="@+id/RelativeLayout01" >
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="25dp" >
 
         <Button
             android:id="@+id/container30"
@@ -174,25 +135,6 @@
             android:layout_toLeftOf="@+id/container10"
             android:gravity="top" />
 
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/container01"
-            android:text="@string/stand_auto_tipped"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/TextView02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/container02"
-            android:layout_alignBottom="@+id/container02"
-            android:layout_toLeftOf="@+id/container02"
-            android:text="@string/stand_auto_collected"
-            android:textSize="20sp" />
-
         <Button
             android:id="@+id/container31"
             style="?android:attr/buttonStyleSmall"
@@ -239,94 +181,279 @@
             android:layout_toLeftOf="@+id/container11"
             android:gravity="top" />
 
+        <RelativeLayout
+            android:id="@+id/relativeLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_toLeftOf="@+id/textView5" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayout04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="75dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/Button10"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stand_auto_minus"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/TextView07"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stand_auto_0"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/Button09"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stand_auto_plus"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@+id/LinearLayout04"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/Button12"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stand_auto_minus"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/TextView08"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stand_auto_0"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/Button11"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stand_auto_plus"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/LinearLayout05"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="12dp"
+                android:text="@string/stand_auto_container"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/LinearLayout05"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24dp"
+                android:text="@string/stand_auto_landfill"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/container00"
-            android:layout_alignRight="@+id/TextView01"
+            android:layout_marginBottom="10dp"
+            android:layout_toLeftOf="@+id/container00"
             android:text="@string/stand_auto_other_side"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/relativeLayout4"
+            android:layout_toLeftOf="@+id/container02"
+            android:text="@string/stand_auto_tipped"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/container01"
+            android:layout_alignRight="@+id/TextView01"
+            android:layout_marginBottom="10dp"
+            android:text="@string/stand_auto_collected"
             android:textSize="20sp" />
 
     </RelativeLayout>
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/button1"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/stand_auto_cooperatition" />
+
+    <Button
+        android:id="@+id/button4"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button3"
+        android:layout_marginTop="15dp"
+        android:layout_toLeftOf="@+id/button5"
+        android:layout_toRightOf="@+id/totes_surface"
+        android:text="@string/stand_auto_undo" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/stand_auto_errors"
+        android:textSize="40sp" />
+
     <RelativeLayout
-        android:id="@+id/counter"
+        android:id="@+id/relativeLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="21dp"
-        android:layout_toLeftOf="@+id/textView4" >
+        android:layout_below="@+id/textView6"
+        android:layout_marginTop="20dp" >
 
-        <Button
-            android:id="@+id/Button01"
-            style="?android:attr/buttonStyleSmall"
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/textView6"
-            android:text="@string/stand_auto_plus"
-            android:textSize="30sp" />
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/button6"
-            style="?android:attr/buttonStyleSmall"
+            <Button
+                android:id="@+id/Button04"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_minus"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/TextView04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_0"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/Button03"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_plus"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/Button06"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_minus"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/TextView05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_0"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/Button05"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_plus"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="@string/stand_auto_minus"
-            android:textSize="30sp" />
+            android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/Button01"
-            android:layout_alignBottom="@+id/Button01"
-            android:layout_centerHorizontal="true"
-            android:text="@string/stand_auto_0"
-            android:textSize="30sp" />
+            <Button
+                android:id="@+id/Button08"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="@string/stand_auto_minus"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/TextView06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_0"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/Button07"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_plus"
+                android:textSize="30sp" />
+        </LinearLayout>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/RelativeLayout01"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignTop="@+id/counter" >
-
-        <Button
-            android:id="@+id/Button03"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/TextView03"
-            android:text="@string/stand_auto_plus"
-            android:textSize="30sp" />
-
-        <Button
-            android:id="@+id/Button02"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/stand_auto_minus"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/TextView03"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/Button03"
-            android:layout_alignBottom="@+id/Button03"
-            android:layout_centerHorizontal="true"
-            android:text="@string/stand_auto_0"
-            android:textSize="30sp" />
-    </RelativeLayout>
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/button2"
+        android:text="@string/stand_auto_submit"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40dp" />
 
 </RelativeLayout>
