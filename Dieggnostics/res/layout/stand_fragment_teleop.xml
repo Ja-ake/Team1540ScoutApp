@@ -7,16 +7,6 @@
     android:minHeight="5000dp"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button5"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/button4"
-        android:layout_marginRight="15dp"
-        android:text="@string/stand_auto_redo" />
-
     <SurfaceView
         android:id="@+id/totes_surface"
         android:layout_width="wrap_content"
@@ -24,22 +14,11 @@
         android:layout_above="@+id/relativeLayout2"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:layout_toLeftOf="@+id/button3"
+        android:layout_toLeftOf="@+id/button_cooperatition"
         android:minHeight="1000dp" />
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/button2"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/totes_surface"
-        android:text="@string/stand_auto_close" />
-
-    <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -47,7 +26,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/totes_surface"
-        android:text="@string/stand_auto_far" />
+        android:text="@string/stand_auto_submit" />
 
     <TextView
         android:id="@+id/textView2"
@@ -60,14 +39,154 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp" />
 
+    <Button
+        android:id="@+id/button_cooperatition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/button_submit"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/stand_auto_cooperatition" />
+
+    <Button
+        android:id="@+id/button_undo"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/button_cooperatition"
+        android:layout_below="@+id/button_cooperatition"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/totes_surface"
+        android:text="@string/stand_auto_undo" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/button_submit"
+        android:text="@string/stand_auto_submit"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40dp" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="28dp" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/button00234"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_minus"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/TextView05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_0"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/Button05"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_plus"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="140dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/Button08"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_minus"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/TextView06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_0"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/Button07"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_plus"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@+id/LinearLayout02"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/Button04"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_minus"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/TextView04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_0"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/Button03"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stand_auto_plus"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="25dp" >
+        android:layout_above="@+id/textView6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp" >
 
         <Button
             android:id="@+id/container30"
@@ -201,7 +320,7 @@
                 android:orientation="horizontal" >
 
                 <Button
-                    android:id="@+id/Button10"
+                    android:id="@+id/button_landfill_minus"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -216,7 +335,7 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/Button09"
+                    android:id="@+id/button_landfill_plus"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -233,7 +352,7 @@
                 android:orientation="horizontal" >
 
                 <Button
-                    android:id="@+id/Button12"
+                    android:id="@+id/button_container_minus"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -248,7 +367,7 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/Button11"
+                    android:id="@+id/button_container_plus"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -305,155 +424,16 @@
             android:layout_marginBottom="10dp"
             android:text="@string/stand_auto_collected"
             android:textSize="20sp" />
-
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/button1"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/stand_auto_cooperatition" />
-
-    <Button
-        android:id="@+id/button4"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
-        android:layout_marginTop="15dp"
-        android:layout_toLeftOf="@+id/button5"
-        android:layout_toRightOf="@+id/totes_surface"
-        android:text="@string/stand_auto_undo" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/relativeLayout3"
+        android:layout_marginLeft="20dp"
         android:text="@string/stand_auto_errors"
         android:textSize="40sp" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView6"
-        android:layout_marginTop="20dp" >
-
-        <LinearLayout
-            android:id="@+id/LinearLayout01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/Button04"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stand_auto_minus"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/TextView04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stand_auto_0"
-                android:textSize="30sp" />
-
-            <Button
-                android:id="@+id/Button03"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stand_auto_plus"
-                android:textSize="30sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/LinearLayout02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="30dp"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/Button06"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stand_auto_minus"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/TextView05"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stand_auto_0"
-                android:textSize="30sp" />
-
-            <Button
-                android:id="@+id/Button05"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stand_auto_plus"
-                android:textSize="30sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/LinearLayout03"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/Button08"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="@string/stand_auto_minus"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/TextView06"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stand_auto_0"
-                android:textSize="30sp" />
-
-            <Button
-                android:id="@+id/Button07"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stand_auto_plus"
-                android:textSize="30sp" />
-        </LinearLayout>
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/button2"
-        android:text="@string/stand_auto_submit"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="40dp" />
 
 </RelativeLayout>
