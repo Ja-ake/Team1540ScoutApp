@@ -55,7 +55,7 @@ public class SystemConnectedThread implements ConnectedThread {
 	@Override
 	public void sendMessage(final String message, final Callback<Tuple<Boolean, String>> callback) {
 		try {
-			bufWriter.write(message);
+			bufWriter.write(message+"\n");
 			callback.callback(new Tuple<Boolean, String>(true, message));
 		} catch (final IOException e) {
 			callback.callback(new Tuple<Boolean, String>(false, message));

@@ -2,16 +2,14 @@ package edu.team1540.egg.impl.counter;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import android.app.FragmentManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import edu.team1540.egg.R;
 import edu.team1540.egg.core.ScoutingFragment;
-import edu.team1540.egg.util.coms.dispatch.Gatherer;
 
-public class CounterFragment extends ScoutingFragment implements Gatherer {
+public class CounterFragment extends ScoutingFragment{
 	private final AtomicInteger val = new AtomicInteger(0);
 
 	public CounterFragment() {
@@ -45,19 +43,5 @@ public class CounterFragment extends ScoutingFragment implements Gatherer {
 
 	public int getCounterValue() {
 		return val.get();
-	}
-
-	@Override
-	public String gather() {
-		return val.get() + "";
-	}
-
-	public static Gatherer getCounterGatherer(final int counterContainer, final FragmentManager man) {
-		CounterFragment frag = (CounterFragment) man.findFragmentById(counterContainer);
-		if (frag == null) {
-			frag = new CounterFragment();
-			man.beginTransaction().replace(counterContainer, frag).commit();
-		}
-		return frag;
 	}
 }
