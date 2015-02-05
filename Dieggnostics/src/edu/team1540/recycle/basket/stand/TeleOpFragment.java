@@ -1,19 +1,21 @@
 package edu.team1540.recycle.basket.stand;
 
+import org.team1540.common.core.schema.impl.StandSchema;
+
 import android.app.Activity;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import edu.team1540.egg.core.ScoutingFragment;
+import edu.team1540.egg.impl.dispatching.DispatchingFragment;
 import edu.team1540.recycle.R;
 import edu.team1540.recycle.draw.StackSurfaceView;
 
-public class TeleOpFragment extends ScoutingFragment {
+public class TeleOpFragment extends DispatchingFragment<StandSchema>{
 
 	private final Activity activity;
-	
+
 	public TeleOpFragment(Activity a) {
 		super(R.layout.stand_fragment_teleop);
 		activity = a;
@@ -23,7 +25,7 @@ public class TeleOpFragment extends ScoutingFragment {
 	public void readyLayout() {
 		SurfaceView sv = this.<SurfaceView> getAsView(R.id.totes_surface);
 		sv.getHolder().addCallback(new StackSurfaceView(activity));
-		
+
 		Button[][] button_container		= new Button[4][3];
 
 		Button button_container_minus	= this.<Button> getAsView(R.id.button_container_minus	);
@@ -45,20 +47,20 @@ public class TeleOpFragment extends ScoutingFragment {
 			   button_container[3][0]	= this.<Button> getAsView(R.id.container30				);
 			   button_container[3][1]	= this.<Button> getAsView(R.id.container31				);
 			   button_container[3][2]	= this.<Button> getAsView(R.id.container32				);
-			   
+
 		class TeleOnClickListener implements OnClickListener {
 			public int id;
-			
+
 			public TeleOnClickListener(int i) {
 				super();
 				id = i;
 			}
-			
+
 			@Override
 			public void onClick(View v) {
 				if (!(v instanceof Button)) return;
 				Button button = (Button) v;
-				
+
 				switch (id) {
 				case R.id.button_container_minus	:
 					break;
@@ -102,9 +104,9 @@ public class TeleOpFragment extends ScoutingFragment {
 					Log.w("DIE", "A button was pressed that is not handled.");
 					break;
 				}
-			}	
+			}
 		}
-		
+
 		button_container_minus.setOnClickListener(new TeleOnClickListener(R.id.button_container_minus	));
 		button_container_plus .setOnClickListener(new TeleOnClickListener(R.id.button_container_plus	));
 		button_cooperatition  .setOnClickListener(new TeleOnClickListener(R.id.button_cooperatition		));
