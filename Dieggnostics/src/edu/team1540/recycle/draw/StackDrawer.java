@@ -14,16 +14,15 @@ public class StackDrawer {
 		paint.setStyle(Style.STROKE);
 
 		float yshift = 0.0f;
-		final float dy = 100.0f;
-		if (dy < 0.0d) {
-			throw new AssertionError("dy is negative or zero.");
-		}
-		for (int i = 0; i < 7; i++) {
-			if (i == 7 - stackHeight) {
+		final float dy = 150.0f;
+		for (int i = 0; i < 5; i++) {
+			if (i == 5 - stackHeight) {
 				paint.setStyle(Style.FILL_AND_STROKE);
 			}
 			canvas.drawRect(x, y + yshift, x + 350.0f, y + yshift + dy - 5.0f, paint);
 			yshift += dy;
 		}
+		
+		if (stackHeight > 5 || stackHeight < 0) stackHeight = 0;
 	}
 }

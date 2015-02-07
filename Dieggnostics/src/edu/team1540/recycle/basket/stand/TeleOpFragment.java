@@ -35,8 +35,6 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 		final Button button_container_plus = this.<Button> getAsView(R.id.button_container_plus);
 		final Button button_landfill_minus = this.<Button> getAsView(R.id.button_landfill_minus);
 		final Button button_landfill_plus = this.<Button> getAsView(R.id.button_landfill_plus);
-		final Button button_submit = this.<Button> getAsView(R.id.button_submit);
-		final Button button_undo = this.<Button> getAsView(R.id.button_undo);
 		button_container[0][0] = this.<Button> getAsView(R.id.container00);
 		button_container[0][1] = this.<Button> getAsView(R.id.container01);
 		button_container[0][2] = this.<Button> getAsView(R.id.container02);
@@ -74,8 +72,6 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 		button_container_plus.setOnClickListener(new TeleOnClickListener(R.id.button_container_plus));
 		button_landfill_minus.setOnClickListener(new TeleOnClickListener(R.id.button_landfill_minus));
 		button_landfill_plus.setOnClickListener(new TeleOnClickListener(R.id.button_landfill_plus));
-		button_submit.setOnClickListener(new TeleOnClickListener(R.id.button_submit));
-		button_undo.setOnClickListener(new TeleOnClickListener(R.id.button_undo));
 		button_container[0][0].setOnClickListener(new TeleOnClickListener(R.id.container00));
 		button_container[0][1].setOnClickListener(new TeleOnClickListener(R.id.container01));
 		button_container[0][2].setOnClickListener(new TeleOnClickListener(R.id.container02));
@@ -89,10 +85,52 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 		button_container[3][1].setOnClickListener(new TeleOnClickListener(R.id.container31));
 		button_container[3][2].setOnClickListener(new TeleOnClickListener(R.id.container32));
 		ssv.setOnTouchListener(new OnTouchListener() {
+			double submitX, oSubmitY;
+			
 			@Override
 			public boolean onTouch(final View v, final MotionEvent event) {
 				v.performClick();
-				stackSurfaceView.mainStackDrawer.stackHeight = (int) ((850 - (event.getY() - stackSurfaceView.mainStackDrawer.y)) / ((1070 - stackSurfaceView.mainStackDrawer.y) / 7));
+				if (event.getAction() != MotionEvent.ACTION_UP) {
+					if (event.getY() > 200) {
+						stackSurfaceView.submitDrawer.beingMoved = false;
+						stackSurfaceView.submitDrawer.x = 70.f;
+						if (event.getX() > 475) {
+							if (event.getX() < 900) stackSurfaceView.mainStackDrawer.stackHeight = (int) ((900 - (event.getY() - stackSurfaceView.mainStackDrawer.y)) / ((1070 - stackSurfaceView.mainStackDrawer.y) / 5));
+						} else stackSurfaceView.oldStackDrawer.stackHeight = (int) ((900 - (event.getY() - stackSurfaceView.oldStackDrawer.y)) / ((1070 - stackSurfaceView.oldStackDrawer.y) / 5));
+					} else {
+						if (event.getX() >= (stackSurfaceView.submitDrawer.x - 40) && event.getX() <= stackSurfaceView.submitDrawer.x + 150) {
+							if (stackSurfaceView.submitDrawer.beingMoved) {
+								stackSurfaceView.submitDrawer.x += (event.getX() - submitX);
+								stackSurfaceView.refreshDrawableState();
+							} else {
+								stackSurfaceView.submitDrawer.beingMoved = true;
+							}
+
+							submitX = event.getX();
+						}
+					}
+					
+					if (stackSurfaceView.oldSubmitDrawer != null) if (event.getX() >= (stackSurfaceView.oldSubmitDrawer.x - 40) && event.getX() <= stackSurfaceView.oldSubmitDrawer.x + 150) {
+						if (event.getY() >= (stackSurfaceView.oldSubmitDrawer.y - 40) && event.getY() <= stackSurfaceView.oldSubmitDrawer.y + 150) {
+							if (stackSurfaceView.oldSubmitDrawer.beingMoved) {
+								stackSurfaceView.oldSubmitDrawer.y += (event.getY() - oSubmitY);
+								stackSurfaceView.refreshDrawableState();
+							} else {
+								stackSurfaceView.oldSubmitDrawer.beingMoved = true;
+							}
+							
+							oSubmitY = event.getY();
+						}
+					}
+				} else {
+					stackSurfaceView.submitDrawer.beingMoved = false;
+					stackSurfaceView.oldSubmitDrawer.beingMoved = false;
+					stackSurfaceView.refreshDrawableState();
+				}
+				
+				stackSurfaceView.submitDrawer.reset();
+				if (stackSurfaceView.oldSubmitDrawer != null) stackSurfaceView.oldSubmitDrawer.reset();
+				
 				return true;
 			}
 		});
