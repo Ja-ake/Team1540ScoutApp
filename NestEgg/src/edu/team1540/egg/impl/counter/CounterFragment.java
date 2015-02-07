@@ -9,7 +9,7 @@ import android.widget.TextView;
 import edu.team1540.egg.R;
 import edu.team1540.egg.core.ScoutingFragment;
 
-public class CounterFragment extends ScoutingFragment{
+public class CounterFragment extends ScoutingFragment {
 	private final AtomicInteger val = new AtomicInteger(0);
 
 	public CounterFragment() {

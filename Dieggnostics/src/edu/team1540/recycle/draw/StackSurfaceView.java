@@ -1,13 +1,10 @@
 package edu.team1540.recycle.draw;
 
-import java.util.logging.Logger;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -19,84 +16,85 @@ public class StackSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 	private SurfaceHolder holder;
 	public final StackDrawer mainStackDrawer = new StackDrawer();
 	public final StackDrawer oldStackDrawer = new StackDrawer();
-	
-	public StackSurfaceView(Context context) {
+
+	public StackSurfaceView(final Context context) {
 		super(context);
 	}
-	
-	public StackSurfaceView(Context context, AttributeSet attrs) {
+
+	public StackSurfaceView(final Context context, final AttributeSet attrs) {
 		super(context, attrs);
 	}
-	
-	public StackSurfaceView(Context context, AttributeSet attrs, int defStyle) {
+
+	public StackSurfaceView(final Context context, final AttributeSet attrs, final int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
 	@Override
-	public void surfaceCreated(SurfaceHolder hold) {
+	public void surfaceCreated(final SurfaceHolder hold) {
 		holder = hold;
-	    Canvas canvas = holder.lockCanvas();
-	    canvas.drawColor(Color.WHITE);
-	    paint.setColor(Color.BLUE);
-	    canvas.drawCircle(100, 200, 50, paint);
-	    holder.unlockCanvasAndPost(canvas);
-	    
-	    final StackSurfaceView tthis = this;
-	    new Thread() {
-	    	@Override
-	    	public void run() {
+		final Canvas canvas = holder.lockCanvas();
+		canvas.drawColor(Color.WHITE);
+		paint.setColor(Color.BLUE);
+		canvas.drawCircle(100, 200, 50, paint);
+		holder.unlockCanvasAndPost(canvas);
+
+		final StackSurfaceView tthis = this;
+		new Thread() {
+			@Override
+			public void run() {
 				while (true) {
 					try {
 						Thread.sleep(100);
-					} catch (InterruptedException e) {
+					} catch (final InterruptedException e) {
 						run();
 						break;
 					}
 					tthis.update();
 				}
-	    	}
-	    }.start();
-	    
-	    mainStackDrawer.x = 500.0f;
-	    mainStackDrawer.y = 330.0f;
-	    
-	    oldStackDrawer.x = 50.0f;
-	    oldStackDrawer.y = 330.0f;
-	    oldStackDrawer.stackHeight = 1;
-	    
-	    this.setOnTouchListener(new OnTouchListener() {
+			}
+		}.start();
+
+		mainStackDrawer.x = 500.0f;
+		mainStackDrawer.y = 330.0f;
+
+		oldStackDrawer.x = 50.0f;
+		oldStackDrawer.y = 330.0f;
+		oldStackDrawer.stackHeight = 1;
+
+		setOnTouchListener(new OnTouchListener() {
 			@Override
-			public boolean onTouch(View v, MotionEvent event) {
+			public boolean onTouch(final View v, final MotionEvent event) {
 				mainStackDrawer.stackHeight = 3;
 				v.performClick();
 				return true;
 			}
-	    });
+		});
 	}
 
-	
 	@Override
 	public boolean performClick() {
 		return super.performClick();
-//		return true;
+		// return true;
 	}
-	
+
 	@Override
-	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+	public void surfaceChanged(final SurfaceHolder holder, final int format, final int width, final int height) {
 
 	}
-	
+
 	public void update() {
-	    Canvas canvas = holder.lockCanvas();
-	    if (canvas == null) return;
-	    canvas.drawColor(Color.WHITE);
+		final Canvas canvas = holder.lockCanvas();
+		if (canvas == null) {
+			return;
+		}
+		canvas.drawColor(Color.WHITE);
 		mainStackDrawer.draw(canvas, paint);
 		oldStackDrawer.draw(canvas, paint);
-	    holder.unlockCanvasAndPost(canvas);
+		holder.unlockCanvasAndPost(canvas);
 	}
 
 	@Override
-	public void surfaceDestroyed(SurfaceHolder holder) {
-		
+	public void surfaceDestroyed(final SurfaceHolder holder) {
+
 	}
 }

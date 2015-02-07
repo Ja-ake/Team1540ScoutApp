@@ -13,14 +13,18 @@ import android.bluetooth.BluetoothSocket;
 
 public class SystemConnectionHandler implements ConnectionHandler {
 
-	public void setupToRecive(Address myAddress, Callback<ConnectedThread> connectingThreads) {
+	@Override
+	public void setupToRecive(final Address myAddress, final Callback<ConnectedThread> connectingThreads) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void connectTo(final Address a, final Callback<ConnectedThread> result) {
 		try {
 			final BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
-			if (adapter == null) return;
+			if (adapter == null) {
+				return;
+			}
 			final BluetoothDevice device = adapter.getRemoteDevice(a.address);
 			final BluetoothSocket socket = device.createRfcommSocketToServiceRecord(a.uuid);
 			new Thread(new Runnable() {
@@ -45,7 +49,7 @@ public class SystemConnectionHandler implements ConnectionHandler {
 					}
 				}
 			});
-		} catch (IOException e1) {
+		} catch (final IOException e1) {
 			result.callback(null);
 		}
 	}

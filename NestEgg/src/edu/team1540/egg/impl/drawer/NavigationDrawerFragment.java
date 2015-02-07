@@ -125,7 +125,7 @@ public class NavigationDrawerFragment extends Fragment {
 	/**
 	 * Users of this fragment must call this method to set up the navigation
 	 * drawer interactions.
-	 * 
+	 *
 	 * @param fragmentId
 	 *            The android:id of this fragment in its activity's layout.
 	 * @param drawerLayout
@@ -148,17 +148,17 @@ public class NavigationDrawerFragment extends Fragment {
 		// ActionBarDrawerToggle ties together the the proper interactions
 		// between the navigation drawer and the action bar app icon.
 		mDrawerToggle = new ActionBarDrawerToggle(getActivity(), /* host Activity */
-		mDrawerLayout, /* DrawerLayout object */
-		R.drawable.ic_drawer, /* nav drawer image to replace 'Up' caret */
-		R.string.navigation_drawer_open, /*
-										 * "open drawer" description for
-										 * accessibility
-										 */
-		R.string.navigation_drawer_close /*
-										 * "close drawer" description for
-										 * accessibility
-										 */
-		) {
+				mDrawerLayout, /* DrawerLayout object */
+				R.drawable.ic_drawer, /* nav drawer image to replace 'Up' caret */
+				R.string.navigation_drawer_open, /*
+				 * "open drawer" description for
+				 * accessibility
+				 */
+				R.string.navigation_drawer_close /*
+				 * "close drawer" description for
+				 * accessibility
+				 */
+				) {
 			@Override
 			public void onDrawerClosed(final View drawerView) {
 				super.onDrawerClosed(drawerView);
@@ -167,7 +167,7 @@ public class NavigationDrawerFragment extends Fragment {
 				}
 
 				getActivity().invalidateOptionsMenu(); // calls
-														// onPrepareOptionsMenu()
+				// onPrepareOptionsMenu()
 			}
 
 			@Override
@@ -187,7 +187,7 @@ public class NavigationDrawerFragment extends Fragment {
 				}
 
 				getActivity().invalidateOptionsMenu(); // calls
-														// onPrepareOptionsMenu()
+				// onPrepareOptionsMenu()
 			}
 		};
 

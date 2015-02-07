@@ -13,7 +13,7 @@ import org.team1540.common.system.ConnectedThread;
 
 import android.bluetooth.BluetoothSocket;
 
-public class SystemConnectedThread implements ConnectedThread{
+public class SystemConnectedThread implements ConnectedThread {
 
 	public final Address address;
 
@@ -24,16 +24,16 @@ public class SystemConnectedThread implements ConnectedThread{
 
 	public Callback<Tuple<Address, String>> messageCallback;
 
-	public SystemConnectedThread(Address target, BluetoothSocket socket){
-		this.address=target;
+	public SystemConnectedThread(final Address target, final BluetoothSocket socket) {
+		address = target;
 		this.socket = socket;
 		try {
 			bufReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			bufWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-			new Thread(new Runnable(){
+			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					while(true){
+					while (true) {
 						try {
 							final String message = bufReader.readLine();
 							if (messageCallback != null) {
@@ -50,20 +50,23 @@ public class SystemConnectedThread implements ConnectedThread{
 		}
 	}
 
-	public Address getTarget(){
+	@Override
+	public Address getTarget() {
 		return address;
 	}
 
-	public void setMessageCallback(Callback<Tuple<Address, String>> messageCallback){
-		this.messageCallback=messageCallback;
+	@Override
+	public void setMessageCallback(final Callback<Tuple<Address, String>> messageCallback) {
+		this.messageCallback = messageCallback;
 	}
 
-	public void sendMessage(String message, Callback<Tuple<Boolean, String>> callback){
+	@Override
+	public void sendMessage(final String message, final Callback<Tuple<Boolean, String>> callback) {
 		try {
 			bufWriter.write(message);
-			callback.callback(new Tuple<Boolean, String>(true,message));
-		} catch (IOException e) {
-			callback.callback(new Tuple<Boolean, String>(false,message));
+			callback.callback(new Tuple<Boolean, String>(true, message));
+		} catch (final IOException e) {
+			callback.callback(new Tuple<Boolean, String>(false, message));
 		}
 	}
 }

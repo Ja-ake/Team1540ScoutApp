@@ -16,21 +16,21 @@ public abstract class DispatchingFragment<S extends Schema> extends ScoutingFrag
 		super(layoutID);
 	}
 
-	protected void setup(AtomicReference<ConnectedThread> c, AtomicReference<S> schema){
-		this.c=c;
-		this.schema=schema;
+	protected void setup(final AtomicReference<ConnectedThread> c, final AtomicReference<S> schema) {
+		this.c = c;
+		this.schema = schema;
 	}
 
-	public S getSchema(){
+	public S getSchema() {
 		return schema.get();
 	}
 
-	public void setSchema(S s){
+	public void setSchema(final S s) {
 		schema.set(s);
 	}
 
-	public boolean submitSchema(){
-		if(c.get()==null){
+	public boolean submitSchema() {
+		if (c.get() == null) {
 			return false;
 		}
 		c.get().sendMessage(Schema.serilizeSchema(schema.get()), null);

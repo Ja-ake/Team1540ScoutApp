@@ -5,9 +5,13 @@ import android.app.Fragment;
 import edu.team1540.egg.impl.drawer.NavigationDrawerWrapper.NamedSelection;
 
 public class FragmentBasket implements NamedSelection<FragmentBasket> {
+
 	public final String name;
+
 	private final Fragment[] fragments;
+
 	private final BasketDrawCallbacks callbacks;
+
 	private int selection = 0;
 
 	public <T extends Activity & BasketDrawCallbacks> FragmentBasket(final BasketDrawCallbacks callbacks, final String name, final Fragment... fragments) {
