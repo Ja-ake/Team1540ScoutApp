@@ -10,15 +10,22 @@ public class StandSchema extends Schema {
 	private static final long serialVersionUID = 2L;
 
 	public List<ToteStackSchema> stacks;
-	public List<ToteStackSchema> cooperatitionStacks;
-	public int litterContainer, litterLandfill;
 	public ContainerState[] containerStates;
-	public int errorsAlpha, errorsBeta, errorsDelta; //TODO:refuctor me!
+	public int litterContainer, litterLandfill;
+	public int errorsAlpha, errorsBeta, errorsDelta; // TODO: refactor me! <gregor you can do this if you know the names>
 
-
+	public boolean leftContainerAuto, middleContainerAuto, rightContainerAuto, leftToteAuto, middleToteAuto, rightToteAuto;
+	public boolean stackedTotes, endedInAuto;
+	
+	public String notes;
+	
 	public StandSchema() {
 		stacks = new ArrayList<ToteStackSchema>();
-		cooperatitionStacks = new ArrayList<ToteStackSchema>();
 		containerStates = new ContainerState[4];
+		leftContainerAuto = middleContainerAuto = rightContainerAuto = 
+				leftToteAuto = middleToteAuto = rightToteAuto = false;
+		stackedTotes = endedInAuto = false;
+		
+		notes = "";
 	}
 }

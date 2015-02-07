@@ -14,19 +14,8 @@
         android:layout_above="@+id/relativeLayout2"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:layout_toLeftOf="@+id/button_cooperatition"
+        android:layout_toLeftOf="@+id/button_submit"
         android:minHeight="1000dp" />
-
-    <Button
-        android:id="@+id/button_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/totes_surface"
-        android:text="@string/stand_auto_submit" />
 
     <TextView
         android:id="@+id/textView2"
@@ -38,27 +27,6 @@
         android:text="@string/stand_auto_totes"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp" />
-
-    <Button
-        android:id="@+id/button_cooperatition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/button_submit"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/stand_auto_cooperatition" />
-
-    <Button
-        android:id="@+id/button_undo"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button_cooperatition"
-        android:layout_below="@+id/button_cooperatition"
-        android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/totes_surface"
-        android:text="@string/stand_auto_undo" />
 
     <TextView
         android:id="@+id/textView1"
@@ -328,7 +296,7 @@
                     android:textSize="30sp" />
 
                 <TextView
-                    android:id="@+id/TextView07"
+                    android:id="@+id/text_landfill_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stand_auto_0"
@@ -360,7 +328,7 @@
                     android:textSize="30sp" />
 
                 <TextView
-                    android:id="@+id/TextView08"
+                    android:id="@+id/text_container_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stand_auto_0"
@@ -435,5 +403,23 @@
         android:layout_marginLeft="20dp"
         android:text="@string/stand_auto_errors"
         android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/button_undo"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/totes_surface"
+        android:layout_alignBottom="@+id/totes_surface"
+        android:layout_toRightOf="@+id/totes_surface"
+        android:text="@string/stand_auto_undo" />
+
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_undo"
+        android:layout_alignParentRight="true"
+        android:text="@string/stand_auto_submit" />
 
 </RelativeLayout>

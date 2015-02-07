@@ -20,6 +20,7 @@ public class SystemConnectionHandler implements ConnectionHandler {
 	public void connectTo(final Address a, final Callback<ConnectedThread> result) {
 		try {
 			final BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+			if (adapter == null) return;
 			final BluetoothDevice device = adapter.getRemoteDevice(a.address);
 			final BluetoothSocket socket = device.createRfcommSocketToServiceRecord(a.uuid);
 			new Thread(new Runnable() {

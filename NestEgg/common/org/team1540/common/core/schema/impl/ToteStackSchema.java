@@ -17,7 +17,7 @@ public class ToteStackSchema extends Schema{
 		newContainer = nc;
 	}
 
-	public enum ContainerState implements Serializable{
+	public enum ContainerState implements Serializable {
 		OTHER_SIDE, TIPPED, COLLECTED;
 
 		private static final long serialVersionUID = 2L;

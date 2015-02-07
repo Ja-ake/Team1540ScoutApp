@@ -1,18 +1,20 @@
 package edu.team1540.recycle.basket.stand;
 
-import org.team1540.common.core.schema.impl.StandSchema;
-
 import android.app.Activity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import edu.team1540.egg.impl.dispatching.DispatchingFragment;
 import edu.team1540.recycle.R;
 import edu.team1540.recycle.draw.StackSurfaceView;
 
-public class TeleOpFragment extends DispatchingFragment<StandSchema>{
+import org.team1540.common.core.schema.impl.StandSchema;
+
+public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 
 	private final Activity activity;
 
@@ -23,14 +25,15 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema>{
 
 	@Override
 	public void readyLayout() {
+		final StackSurfaceView stackSurfaceView = new StackSurfaceView(activity);
+		
 		SurfaceView sv = this.<SurfaceView> getAsView(R.id.totes_surface);
-		sv.getHolder().addCallback(new StackSurfaceView(activity));
+		sv.getHolder().addCallback(stackSurfaceView);
 
 		Button[][] button_container		= new Button[4][3];
 
 		Button button_container_minus	= this.<Button> getAsView(R.id.button_container_minus	);
 		Button button_container_plus	= this.<Button> getAsView(R.id.button_container_plus	);
-		Button button_cooperatition	 	= this.<Button> getAsView(R.id.button_cooperatition		);
 		Button button_landfill_minus	= this.<Button> getAsView(R.id.button_landfill_minus	);
 		Button button_landfill_plus	 	= this.<Button> getAsView(R.id.button_landfill_plus		);
 		Button button_submit			= this.<Button> getAsView(R.id.button_submit			);
@@ -47,7 +50,11 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema>{
 			   button_container[3][0]	= this.<Button> getAsView(R.id.container30				);
 			   button_container[3][1]	= this.<Button> getAsView(R.id.container31				);
 			   button_container[3][2]	= this.<Button> getAsView(R.id.container32				);
+			   
+		SurfaceView ssv = this.<SurfaceView> getAsView(R.id.totes_surface);
 
+			   
+		final StandButtonHandler standButtonHandler = new StandButtonHandler(this.getSchema(), this);
 		class TeleOnClickListener implements OnClickListener {
 			public int id;
 
@@ -60,56 +67,12 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema>{
 			public void onClick(View v) {
 				if (!(v instanceof Button)) return;
 				Button button = (Button) v;
-
-				switch (id) {
-				case R.id.button_container_minus	:
-					break;
-				case R.id.button_container_plus	    :
-					break;
-				case R.id.button_cooperatition		:
-					break;
-				case R.id.button_landfill_minus	    :
-					break;
-				case R.id.button_landfill_plus		:
-					break;
-				case R.id.button_submit			    :
-					break;
-				case R.id.button_undo				:
-					break;
-				case R.id.container00				:
-					break;
-				case R.id.container01				:
-					break;
-				case R.id.container02				:
-					break;
-				case R.id.container10				:
-					break;
-				case R.id.container11				:
-					break;
-				case R.id.container12				:
-					break;
-				case R.id.container20				:
-					break;
-				case R.id.container21				:
-					break;
-				case R.id.container22				:
-					break;
-				case R.id.container30				:
-					break;
-				case R.id.container31				:
-					break;
-				case R.id.container32				:
-					break;
-				default:
-					Log.w("DIE", "A button was pressed that is not handled.");
-					break;
-				}
+				standButtonHandler.onClick(id);
 			}
 		}
 
 		button_container_minus.setOnClickListener(new TeleOnClickListener(R.id.button_container_minus	));
 		button_container_plus .setOnClickListener(new TeleOnClickListener(R.id.button_container_plus	));
-		button_cooperatition  .setOnClickListener(new TeleOnClickListener(R.id.button_cooperatition		));
 		button_landfill_minus .setOnClickListener(new TeleOnClickListener(R.id.button_landfill_minus	));
 		button_landfill_plus  .setOnClickListener(new TeleOnClickListener(R.id.button_landfill_plus		));
 		button_submit		  .setOnClickListener(new TeleOnClickListener(R.id.button_submit			));
@@ -126,5 +89,13 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema>{
 		button_container[3][0].setOnClickListener(new TeleOnClickListener(R.id.container30				));
 		button_container[3][1].setOnClickListener(new TeleOnClickListener(R.id.container31				));
 		button_container[3][2].setOnClickListener(new TeleOnClickListener(R.id.container32				));
+		ssv.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				v.performClick();
+				stackSurfaceView.mainStackDrawer.stackHeight = (int) ((850 - (event.getY() - stackSurfaceView.mainStackDrawer.y)) / ((1070 - (stackSurfaceView.mainStackDrawer.y)) / 7));
+				return true;
+			}
+		});
 	}
 }

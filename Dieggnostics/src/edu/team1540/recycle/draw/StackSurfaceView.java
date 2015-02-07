@@ -8,15 +8,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 public class StackSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
 	private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	private SurfaceHolder holder;
-	private StackDrawer mainStackDrawer = new StackDrawer();
-	private StackDrawer oldStackDrawer = new StackDrawer();
+	public final StackDrawer mainStackDrawer = new StackDrawer();
+	public final StackDrawer oldStackDrawer = new StackDrawer();
 	
 	public StackSurfaceView(Context context) {
 		super(context);
@@ -61,8 +63,24 @@ public class StackSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 	    oldStackDrawer.x = 50.0f;
 	    oldStackDrawer.y = 330.0f;
 	    oldStackDrawer.stackHeight = 1;
+	    
+	    this.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				mainStackDrawer.stackHeight = 3;
+				v.performClick();
+				return true;
+			}
+	    });
 	}
 
+	
+	@Override
+	public boolean performClick() {
+		return super.performClick();
+//		return true;
+	}
+	
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
@@ -70,6 +88,7 @@ public class StackSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 	
 	public void update() {
 	    Canvas canvas = holder.lockCanvas();
+	    if (canvas == null) return;
 	    canvas.drawColor(Color.WHITE);
 		mainStackDrawer.draw(canvas, paint);
 		oldStackDrawer.draw(canvas, paint);
