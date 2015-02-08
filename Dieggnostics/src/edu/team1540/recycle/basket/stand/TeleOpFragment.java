@@ -89,14 +89,20 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 			
 			@Override
 			public boolean onTouch(final View v, final MotionEvent event) {
-				v.performClick();
+				v.performClick();				
 				if (event.getAction() != MotionEvent.ACTION_UP) {
 					if (event.getY() > 200) {
 						stackSurfaceView.submitDrawer.beingMoved = false;
 						stackSurfaceView.submitDrawer.x = 70.f;
 						if (event.getX() > 475) {
-							if (event.getX() < 900) stackSurfaceView.mainStackDrawer.stackHeight = (int) ((900 - (event.getY() - stackSurfaceView.mainStackDrawer.y)) / ((1070 - stackSurfaceView.mainStackDrawer.y) / 5));
+							if (event.getX() < 900) stackSurfaceView.mainStackDrawer.stackHeight = (int) ((900 - (event.getY() - stackSurfaceView.mainStackDrawer.y)) / ((1070 - stackSurfaceView.mainStackDrawer.y) / 5));						
 						} else stackSurfaceView.oldStackDrawer.stackHeight = (int) ((900 - (event.getY() - stackSurfaceView.oldStackDrawer.y)) / ((1070 - stackSurfaceView.oldStackDrawer.y) / 5));
+					} else if (event.getY() > 140) {
+						if (event.getAction() == MotionEvent.ACTION_DOWN) {
+							if (event.getX() > 475) {
+								if (event.getX() < 900) stackSurfaceView.mainStackDrawer.container = !stackSurfaceView.mainStackDrawer.container;
+							} else stackSurfaceView.oldStackDrawer.container = !stackSurfaceView.oldStackDrawer.container;
+						}
 					} else {
 						if (event.getX() >= (stackSurfaceView.submitDrawer.x - 40) && event.getX() <= stackSurfaceView.submitDrawer.x + 150) {
 							if (stackSurfaceView.submitDrawer.beingMoved) {
@@ -110,21 +116,26 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 						}
 					}
 					
-					if (stackSurfaceView.oldSubmitDrawer != null) if (event.getX() >= (stackSurfaceView.oldSubmitDrawer.x - 40) && event.getX() <= stackSurfaceView.oldSubmitDrawer.x + 150) {
-						if (event.getY() >= (stackSurfaceView.oldSubmitDrawer.y - 40) && event.getY() <= stackSurfaceView.oldSubmitDrawer.y + 150) {
-							if (stackSurfaceView.oldSubmitDrawer.beingMoved) {
-								stackSurfaceView.oldSubmitDrawer.y += (event.getY() - oSubmitY);
-								stackSurfaceView.refreshDrawableState();
-							} else {
-								stackSurfaceView.oldSubmitDrawer.beingMoved = true;
+					
+					if (stackSurfaceView.oldSubmitDrawer != null) {
+						synchronized (stackSurfaceView.oldSubmitDrawer) {
+							if (event.getX() >= (stackSurfaceView.oldSubmitDrawer.x - 40) && event.getX() <= stackSurfaceView.oldSubmitDrawer.x + 150) {
+								if (event.getY() >= (stackSurfaceView.oldSubmitDrawer.y - 40) && event.getY() <= stackSurfaceView.oldSubmitDrawer.y + 150) {
+									if (stackSurfaceView.oldSubmitDrawer.beingMoved) {
+										stackSurfaceView.oldSubmitDrawer.y += (event.getY() - oSubmitY);
+										stackSurfaceView.refreshDrawableState();
+									} else {
+										stackSurfaceView.oldSubmitDrawer.beingMoved = true;
+									}
+
+									oSubmitY = event.getY();
+								}
 							}
-							
-							oSubmitY = event.getY();
 						}
 					}
 				} else {
 					stackSurfaceView.submitDrawer.beingMoved = false;
-					stackSurfaceView.oldSubmitDrawer.beingMoved = false;
+					if (stackSurfaceView.oldSubmitDrawer != null) stackSurfaceView.oldSubmitDrawer.beingMoved = false;
 					stackSurfaceView.refreshDrawableState();
 				}
 				

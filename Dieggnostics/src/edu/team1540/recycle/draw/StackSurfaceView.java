@@ -80,17 +80,31 @@ public class StackSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 		if (canvas == null) {
 			return;
 		}
-		canvas.drawColor(Color.WHITE);
+		canvas.drawColor(Color.rgb(244, 244, 244));
 		
 		submitDrawer.mainStack = mainStackDrawer.stackHeight;
 		submitDrawer.oldStack = oldStackDrawer.stackHeight;
+		submitDrawer.mContainer = mainStackDrawer.container;
+		submitDrawer.oContainer = oldStackDrawer.container;
 		
 		if (submitDrawer.mainStack < 0 || submitDrawer.mainStack > 5) submitDrawer.mainStack = 0;
 		if (submitDrawer.oldStack < 0 || submitDrawer.oldStack > 5) submitDrawer.oldStack = 0;
 		
+		paint.setStrokeWidth(20);
+		canvas.drawLine(210, 64, 480, 64, paint);
+		canvas.drawLine(646, 64, 970, 64, paint);
+		canvas.drawLine(1058, 148, 1058, 450, paint);
+		canvas.drawLine(1058, 500, 1058, 1000, paint);
+		paint.setStrokeWidth(1);
+		paint.setTextSize(40);
+		canvas.drawText("Submit", 500, 76, paint);
+		canvas.drawText("Remove", 984, 488, paint);
+		
 		mainStackDrawer.draw(canvas, paint);
 		oldStackDrawer.draw(canvas, paint);
 		submitDrawer.draw(canvas, paint);
+		
+		if (oldSubmitDrawerStack.size() > 0) oldSubmitDrawerStack.peek().draw(canvas, paint);
 		
 		if (oldSubmitDrawer != null) {
 			oldSubmitDrawer.reset();
@@ -107,11 +121,16 @@ public class StackSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 			oldSubmitDrawer.y = 10.f;
 			mainStackDrawer.stackHeight = 0;
 			oldStackDrawer.stackHeight = 0;
+			mainStackDrawer.container = false;
+			oldStackDrawer.container = false;
 			submitDrawer = new SubmitDrawer(mainStackDrawer.stackHeight, oldStackDrawer.stackHeight, 70, 10);
 		}
 		
-		if (oldSubmitDrawer.y > 1000) {
-			oldSubmitDrawer = oldSubmitDrawerStack.pop();
+		if (oldSubmitDrawer != null) synchronized (oldSubmitDrawer) {
+			if (oldSubmitDrawer.y > 1000) {
+				if (oldSubmitDrawerStack.size() > 0) oldSubmitDrawer = oldSubmitDrawerStack.pop();
+				else oldSubmitDrawer = null;
+			}
 		}
 
 		holder.unlockCanvasAndPost(canvas);
