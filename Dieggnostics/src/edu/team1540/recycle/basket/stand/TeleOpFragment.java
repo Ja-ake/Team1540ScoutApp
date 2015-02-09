@@ -15,17 +15,14 @@ import edu.team1540.recycle.draw.StackSurfaceView;
 
 public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 
-	private final Activity activity;
-
-	public TeleOpFragment(final Activity a) {
+	public TeleOpFragment() {
 		super(R.layout.stand_fragment_teleop);
-		activity = a;
 	}
 
 	@Override
 	public void readyLayout() {
-		final StackSurfaceView stackSurfaceView = new StackSurfaceView(activity);
-
+		final StackSurfaceView stackSurfaceView = new StackSurfaceView(this.getActivity());
+		final TeleOpFragment tthis = this;
 		final SurfaceView sv = this.<SurfaceView> getAsView(R.id.totes_surface);
 		sv.getHolder().addCallback(stackSurfaceView);
 
@@ -35,6 +32,12 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 		final Button button_container_plus = this.<Button> getAsView(R.id.button_container_plus);
 		final Button button_landfill_minus = this.<Button> getAsView(R.id.button_landfill_minus);
 		final Button button_landfill_plus = this.<Button> getAsView(R.id.button_landfill_plus);
+		final Button button_error_alpha_minus = this.<Button> getAsView(R.id.button_error_alpha_minus);
+		final Button button_error_alpha_plus = this.<Button> getAsView(R.id.button_error_alpha_plus);
+		final Button button_error_beta_minus = this.<Button> getAsView(R.id.button_error_beta_minus);
+		final Button button_error_beta_plus = this.<Button> getAsView(R.id.button_error_beta_plus);
+		final Button button_error_delta_minus = this.<Button> getAsView(R.id.button_error_delta_minus);
+		final Button button_error_delta_plus = this.<Button> getAsView(R.id.button_error_delta_plus);
 		button_container[0][0] = this.<Button> getAsView(R.id.container00);
 		button_container[0][1] = this.<Button> getAsView(R.id.container01);
 		button_container[0][2] = this.<Button> getAsView(R.id.container02);
@@ -68,6 +71,13 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 			}
 		}
 
+		this.<Button> getAsView(R.id.button_submit).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tthis.attemptIncrementCurrentBasket();
+			}
+		});
+		
 		button_container_minus.setOnClickListener(new TeleOnClickListener(R.id.button_container_minus));
 		button_container_plus.setOnClickListener(new TeleOnClickListener(R.id.button_container_plus));
 		button_landfill_minus.setOnClickListener(new TeleOnClickListener(R.id.button_landfill_minus));
@@ -84,14 +94,20 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 		button_container[3][0].setOnClickListener(new TeleOnClickListener(R.id.container30));
 		button_container[3][1].setOnClickListener(new TeleOnClickListener(R.id.container31));
 		button_container[3][2].setOnClickListener(new TeleOnClickListener(R.id.container32));
+		button_error_alpha_minus.setOnClickListener(new TeleOnClickListener(R.id.button_error_alpha_minus));
+		button_error_alpha_plus.setOnClickListener(new TeleOnClickListener(R.id.button_error_alpha_plus));
+		button_error_beta_minus.setOnClickListener(new TeleOnClickListener(R.id.button_error_beta_minus));
+		button_error_beta_plus.setOnClickListener(new TeleOnClickListener(R.id.button_error_beta_plus));
+		button_error_delta_minus.setOnClickListener(new TeleOnClickListener(R.id.button_error_delta_minus));
+		button_error_delta_plus.setOnClickListener(new TeleOnClickListener(R.id.button_error_delta_plus));
 		ssv.setOnTouchListener(new OnTouchListener() {
 			double submitX, oSubmitY;
 			
 			@Override
 			public boolean onTouch(final View v, final MotionEvent event) {
-				v.performClick();				
+				v.performClick();
 				if (event.getAction() != MotionEvent.ACTION_UP) {
-					if (event.getY() > 200) {
+					if (event.getY() > 230) {
 						stackSurfaceView.submitDrawer.beingMoved = false;
 						stackSurfaceView.submitDrawer.x = 70.f;
 						if (event.getX() > 475) {

@@ -35,7 +35,7 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/button00234"
+                android:id="@+id/button_error_delta_minus"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,14 +43,14 @@
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/TextView05"
+                android:id="@+id/text_error_delta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/stand_auto_0"
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/Button05"
+                android:id="@+id/button_error_delta_plus"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/Button08"
+                android:id="@+id/button_error_alpha_minus"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,14 +76,14 @@
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/TextView06"
+                android:id="@+id/text_error_alpha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/stand_auto_0"
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/Button07"
+                android:id="@+id/button_error_alpha_plus"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/Button04"
+                android:id="@+id/button_error_beta_minus"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,14 +109,14 @@
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/TextView04"
+                android:id="@+id/text_error_beta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/stand_auto_0"
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/Button03"
+                android:id="@+id/button_error_beta_plus"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -391,5 +391,13 @@
         android:text="@string/stand_auto_totes"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/stand_auto_submit" />
 
 </RelativeLayout>

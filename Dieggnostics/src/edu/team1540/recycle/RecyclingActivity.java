@@ -8,6 +8,7 @@ import edu.team1540.egg.core.ScoutingActivity;
 import edu.team1540.egg.impl.dispatching.DispatchingBasket;
 import edu.team1540.egg.system.SystemConnectionHandler;
 import edu.team1540.recycle.basket.home.HomeFragment;
+import edu.team1540.recycle.basket.stand.AutonomousFragment;
 import edu.team1540.recycle.basket.stand.TeleOpFragment;
 
 public final class RecyclingActivity extends ScoutingActivity {
@@ -19,7 +20,7 @@ public final class RecyclingActivity extends ScoutingActivity {
 		return new FragmentBasket[] {
 				new FragmentBasket(this, "Home", new HomeFragment()),
 				new DispatchingBasket<StandSchema>(
-						a, new SystemConnectionHandler(), new StandSchema(), this, "Stand Scouting", new TeleOpFragment(this)) };
+						a, new SystemConnectionHandler(), new StandSchema(), this, "Stand Scouting", new TeleOpFragment(), new AutonomousFragment()) };
 	}
 }
 
