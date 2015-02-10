@@ -10,6 +10,7 @@ import org.team1540.common.system.ConnectionHandler;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.util.Log;
 
 public class SystemConnectionHandler implements ConnectionHandler {
 
@@ -22,9 +23,9 @@ public class SystemConnectionHandler implements ConnectionHandler {
 	public void connectTo(final Address a, final Callback<ConnectedThread> result) {
 		try {
 			final BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
-			if (adapter == null) {
-				return;
-			}
+//			if (adapter == null) {
+//				return;
+//			}
 			final BluetoothDevice device = adapter.getRemoteDevice(a.address);
 			final BluetoothSocket socket = device.createRfcommSocketToServiceRecord(a.uuid);
 			new Thread(new Runnable() {
@@ -37,8 +38,10 @@ public class SystemConnectionHandler implements ConnectionHandler {
 									adapter.cancelDiscovery();
 									socket.connect();
 									result.callback(new SystemConnectedThread(a, socket));
+									Log.i("eggo","swag");
 									return;
 								} catch (final IOException connectException) {
+									Log.i("eggo",connectException.toString());
 									Thread.sleep(10000);
 								}
 							}
@@ -48,7 +51,7 @@ public class SystemConnectionHandler implements ConnectionHandler {
 					} catch (final IOException closeException) {
 					}
 				}
-			});
+			}).start();
 		} catch (final IOException e1) {
 			result.callback(null);
 		}

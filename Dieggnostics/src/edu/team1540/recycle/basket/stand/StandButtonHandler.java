@@ -9,15 +9,15 @@ import android.widget.TextView;
 import edu.team1540.recycle.R;
 
 public class StandButtonHandler {
-	private final StandSchema scheme;
 	private final TeleOpFragment fragment;
 
-	public StandButtonHandler(final StandSchema schem, final TeleOpFragment frag) {
-		scheme = schem;
+	public StandButtonHandler(final TeleOpFragment frag) {
 		fragment = frag;
 	}
 
 	public void onClick(final int id) {
+		StandSchema scheme = (StandSchema) (Object) fragment.getSchema();
+		
 		switch (id) {
 		case R.id.button_container_minus: {
 			scheme.litterContainer--;

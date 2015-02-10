@@ -12,6 +12,7 @@ import org.team1540.common.core.pattern.Tuple;
 import org.team1540.common.system.ConnectedThread;
 
 import android.bluetooth.BluetoothSocket;
+import android.util.Log;
 
 public class SystemConnectedThread implements ConnectedThread {
 
@@ -62,11 +63,12 @@ public class SystemConnectedThread implements ConnectedThread {
 
 	@Override
 	public void sendMessage(final String message, final Callback<Tuple<Boolean, String>> callback) {
+		Log.i("eggo", message);
 		try {
-			bufWriter.write(message);
-			callback.callback(new Tuple<Boolean, String>(true, message));
+			bufWriter.write(message+"\n");
+			if (callback != null) callback.callback(new Tuple<Boolean, String>(true, message));
 		} catch (final IOException e) {
-			callback.callback(new Tuple<Boolean, String>(false, message));
+			if (callback != null) callback.callback(new Tuple<Boolean, String>(false, message));
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package edu.team1540.recycle;
 
+import java.util.UUID;
+
 import org.team1540.common.core.bluetooth.Address;
 import org.team1540.common.core.schema.impl.StandSchema;
 
@@ -16,7 +18,7 @@ public final class RecyclingActivity extends ScoutingActivity {
 	@Override
 	@SuppressWarnings("unchecked")
 	public FragmentBasket[] getPages() {
-		final Address a = new Address("60:C5:47:90:D9:15");
+		final Address a = new Address("60:C5:47:90:D9:15", UUID.fromString("513A4666-E634-43E0-A2FA-DC74058D74A2"));
 		return new FragmentBasket[] {
 				new FragmentBasket(this, "Home", new HomeFragment()),
 				new DispatchingBasket<StandSchema>(

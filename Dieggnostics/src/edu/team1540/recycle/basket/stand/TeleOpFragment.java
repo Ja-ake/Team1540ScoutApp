@@ -53,7 +53,7 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 
 		final SurfaceView ssv = this.<SurfaceView> getAsView(R.id.totes_surface);
 
-		final StandButtonHandler standButtonHandler = new StandButtonHandler(getSchema(), this);
+		final StandButtonHandler standButtonHandler = new StandButtonHandler(this);
 		class TeleOnClickListener implements OnClickListener {
 			public int id;
 
@@ -74,7 +74,7 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 		this.<Button> getAsView(R.id.button_submit).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				tthis.attemptIncrementCurrentBasket();
+				TeleOpFragment.this.submitSchema();
 			}
 		});
 		
