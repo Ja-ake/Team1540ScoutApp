@@ -47,7 +47,6 @@
         android:layout_above="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="123dp"
-        android:text="@string/stand_login_default_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp" />
 

@@ -4,7 +4,7 @@ id,Colby Skeggs,413
 id,Gregor Peach,1337
 
 # normal
-id,John Doe,0
+
 id,Adolfo Apolloni,9
 id,Aidan Smith,93
 id,Alexander Mackworth,64
