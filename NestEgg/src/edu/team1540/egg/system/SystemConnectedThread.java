@@ -68,6 +68,7 @@ public class SystemConnectedThread implements ConnectedThread {
 			bufWriter.write(message+"\n");
 			if (callback != null) callback.callback(new Tuple<Boolean, String>(true, message));
 		} catch (final IOException e) {
+			Log.e("egg",e.toString());
 			if (callback != null) callback.callback(new Tuple<Boolean, String>(false, message));
 		}
 	}

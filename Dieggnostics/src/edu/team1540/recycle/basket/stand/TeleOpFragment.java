@@ -74,7 +74,7 @@ public class TeleOpFragment extends DispatchingFragment<StandSchema> {
 		this.<Button> getAsView(R.id.button_submit).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				TeleOpFragment.this.submitSchema();
+				TeleOpFragment.this.attemptIncrementCurrentBasket();
 			}
 		});
 		

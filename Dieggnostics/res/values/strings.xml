@@ -35,6 +35,8 @@
 	<string name="stand_auto_made_autozone">Made Autozone?</string>
 	<string name="stand_auto_stacked_totes">Stacked Totes?</string>
 	<string name="stand_auto_ended_autozone">Ended in Autozone?</string>
-	
+	<string name="stand_login_login">Login</string>
+	<string name="stand_login_enter_id">Enter your ID:</string>
+	<string name="stand_login_default_name">John Doe</string>
     
 </resources>

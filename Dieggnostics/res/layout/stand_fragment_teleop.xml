@@ -14,7 +14,7 @@
         android:layout_above="@+id/relativeLayout2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/login_name"
         android:minHeight="1000dp" />
 
     <RelativeLayout
@@ -383,7 +383,7 @@
         android:textSize="40sp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/login_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
