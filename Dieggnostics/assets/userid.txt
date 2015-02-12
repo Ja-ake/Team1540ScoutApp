@@ -30,7 +30,7 @@ id,Mind Tienparsertkij,91
 id,Rachel Ma,34
 id,Robobobin Obattoby,23
 id,Rushdi Abualhaija,24
-id,Ryan Selden,18
+id,Ryan Selden,0
 id,Sydney Palmer,25
 id,Vincent Miller,10
 
